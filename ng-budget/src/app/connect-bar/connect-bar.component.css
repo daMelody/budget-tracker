@@ -1,0 +1,16 @@
+.connect-bar {
+    background-color: darkred;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    border-radius: 5px;
+    font-size: large;
+}
+
+button {
+    margin-left: 20px;
+}
