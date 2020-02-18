@@ -1,3 +1,16 @@
+<div class="account-manager">
+  <form class="new-account">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Enter the new Account name" [(ngModel)]="newName" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Value</mat-label>
+      <input matInput placeholder="Enter the new Account value" [(ngModel)]="newValue" />
+    </mat-form-field>
+    <button mat-raised-button (click)="addAccount()">Add Account</button>
+  </form>
+
   <table mat-table [dataSource]="accounts" class="mat-elevation-z8">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -30,3 +43,4 @@
       <!--td mat-cell *matCellDef="let element"> {{element.value}} </td-->
     </ng-container>
   </table>
+</div>
