@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Transaction } from "../type-classes/transaction/transaction";
 
 @Component({
     selector: "app-transaction-table",
@@ -16,7 +17,7 @@ export class TransactionTableComponent implements OnInit {
         "type",
         "description"
     ];
-    transactions: any[];
+    transactions: Array<Transaction>;
 
     /*initialSelection = [];
     allowMultiSelect = true;
@@ -33,4 +34,20 @@ export class TransactionTableComponent implements OnInit {
             ? this.selection.clear()
             : this.transactions.data.forEach(row => this.selection.select(row));
     }*/
+
+    newDate: Date;
+    newAmount: Number;
+    newAccount: Number;
+    newType: String;
+    newDescription: String;
+
+    newTransaction(): void {
+        let newTransaction = new Transaction();
+        newTransaction.date = this.newDate;
+        newTransaction.amount = this.newAmount;
+        newTransaction.account = this.newAccount;
+        newTransaction.type = this.newType;
+        newTransaction.description = this.newDescription;
+        this.transactions.push(newTransaction);
+    }
 }

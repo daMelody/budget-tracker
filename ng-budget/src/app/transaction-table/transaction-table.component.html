@@ -1,5 +1,31 @@
 <div class="transaction-table">
-  <h2>transactions</h2>
+  <form class="new-transaction">
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput type="date" placeholder="Enter the transaction's date"
+        [(ngModel)]="newDate" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput type="currency" placeholder="Enter the transaction's amount"
+        [(ngModel)]="newAmount" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Account No.</mat-label>
+      <input matInput type="number" placeholder="Enter the corresponding account no."
+        [(ngModel)]="newAccount" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput placeholder="Enter the corresponding category's code" [(ngModel)]="newType" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Enter the transaction's description"
+        [(ngModel)]="newDescription" />
+    </mat-form-field>
+    <button mat-raised-button (click)="addTransaction()">Add Transaction</button>
+  </form>
   <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
