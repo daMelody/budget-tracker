@@ -6,6 +6,9 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./transaction-table.component.css"]
 })
 export class TransactionTableComponent implements OnInit {
+    constructor() {}
+    ngOnInit() {}
+
     displayedColumns: String[] = [
         "date",
         "amount",
@@ -15,7 +18,19 @@ export class TransactionTableComponent implements OnInit {
     ];
     transactions: any[];
 
-    constructor() {}
+    /*initialSelection = [];
+    allowMultiSelect = true;
+    selection = new SelectionModel<>(this.allowMultiSelect,this.initialSelection);
 
-    ngOnInit() {}
+    isAllSelected(): Boolean {
+        const numSelected: Number = this.selection.selected.length;
+        const numRows: Number = this.transactions.data.length;
+        return numSelected == numRows;
+    }
+
+    masterToggle() {
+        this.isAllSelected()
+            ? this.selection.clear()
+            : this.transactions.data.forEach(row => this.selection.select(row));
+    }*/
 }
