@@ -6,11 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { ConnectBarComponent } from './connect-bar/connect-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverviewComponent } from './overview/overview.component';
+import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ConnectBarComponent
+        ConnectBarComponent,
+        OverviewComponent,
+        TransactionTableComponent
     ],
     imports: [
         BrowserModule,
