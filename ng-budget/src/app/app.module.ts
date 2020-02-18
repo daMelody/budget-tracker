@@ -8,13 +8,15 @@ import { AppComponent } from "./app.component";
 import { ConnectBarComponent } from "./connect-bar/connect-bar.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { TransactionTableComponent } from "./transaction-table/transaction-table.component";
+import { AccountManagerComponent } from './account-manager/account-manager.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         ConnectBarComponent,
         OverviewComponent,
-        TransactionTableComponent
+        TransactionTableComponent,
+        AccountManagerComponent
     ],
     imports: [BrowserModule, FormsModule, MatButtonModule, MatTableModule],
     providers: [],
