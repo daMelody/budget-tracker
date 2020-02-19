@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Transaction } from "../type-classes/transaction/transaction";
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
     selector: "app-transaction-table",
@@ -7,8 +9,8 @@ import { Transaction } from "../type-classes/transaction/transaction";
     styleUrls: ["./transaction-table.component.css"]
 })
 export class TransactionTableComponent implements OnInit {
-    constructor() {}
-    ngOnInit() {}
+    constructor() { }
+    ngOnInit() { }
 
     displayedColumns: String[] = [
         "date",
@@ -17,11 +19,11 @@ export class TransactionTableComponent implements OnInit {
         "type",
         "description"
     ];
-    transactions: Array<Transaction>;
+    transactions: MatTableDataSource<Transaction>;
 
-    /*initialSelection = [];
+    initialSelection = [];
     allowMultiSelect = true;
-    selection = new SelectionModel<>(this.allowMultiSelect,this.initialSelection);
+    selection = new SelectionModel<Transaction>(this.allowMultiSelect, this.initialSelection);
 
     isAllSelected(): Boolean {
         const numSelected: Number = this.selection.selected.length;
@@ -33,7 +35,7 @@ export class TransactionTableComponent implements OnInit {
         this.isAllSelected()
             ? this.selection.clear()
             : this.transactions.data.forEach(row => this.selection.select(row));
-    }*/
+    }
 
     newDate: Date;
     newAmount: Number;
@@ -41,13 +43,13 @@ export class TransactionTableComponent implements OnInit {
     newType: String;
     newDescription: String;
 
-    newTransaction(): void {
+    addTransaction(): void {
         let newTransaction = new Transaction();
         newTransaction.date = this.newDate;
         newTransaction.amount = this.newAmount;
         newTransaction.account = this.newAccount;
         newTransaction.type = this.newType;
         newTransaction.description = this.newDescription;
-        this.transactions.push(newTransaction);
+        this.transactions.data.push(newTransaction);
     }
 }
