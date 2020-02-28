@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -25,6 +26,7 @@ import { AccountManagerComponent } from './account-manager/account-manager.compo
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         MatFormFieldModule,
         MatButtonModule,
