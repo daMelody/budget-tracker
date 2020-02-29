@@ -74,10 +74,38 @@ export class AccountManagerComponent implements OnInit {
         this.table.renderRows();
     }
 
-    // TODO: finish account sorting
-    sortAccounts(): void {
-        this.accounts = this.accounts.sort();
+    sortAccounts(event): void {
+        switch (event.active) {
+            case "number": this.accounts = this.accounts.sort(this.numberSort);
+            break;
+            case "name": this.accounts = this.accounts.sort(this.nameSort);
+            break;
+            case "value": this.accounts = this.accounts.sort(this.valueSort);
+            break;
+            default: console.log("Invalid sort parameter");
+        }
 
+        console.log(event.direction);
+        if (event.direction == "asc") { this.accounts = this.accounts.reverse(); }
+        console.log(this.accounts);
         this.table.renderRows();
+    }
+
+    numberSort(a: Account, b: Account): number {
+        return a.number - b.number;
+    }
+
+    nameSort(a: Account, b: Account): number {
+        if (a.name < b.name) {
+            return -1;
+        } else if (a.name > b.name) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    valueSort(a: Account, b: Account): number {
+        return a.value - b.value;
     }
 }
