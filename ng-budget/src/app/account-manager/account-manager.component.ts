@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatSortModule } from "@angular/material/sort";
 import { SelectionModel } from "@angular/cdk/collections";
 import { Account } from "../type-classes/account/account";
 
@@ -21,7 +22,7 @@ SOURCE.push(sndAct);
     styleUrls: ["./account-manager.component.css"]
 })
 export class AccountManagerComponent implements OnInit {
-    displayedColumns: String[] = ["select", "number", "name", "value"];
+    displayedColumns: string[] = ["select", "number", "name", "value"];
     accounts: Array<Account> = new Array<Account>();
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
     @ViewChild(MatTable,{static: true}) table: MatTable<any>;
@@ -48,11 +49,24 @@ export class AccountManagerComponent implements OnInit {
 
     addAccount(): void {
         let newAccount: Account = new Account();
-        newAccount.number = this.accounts.length;
+        newAccount.number = this.accounts.length <= 0 ? 0 : this.accounts[0].number++;
         newAccount.name = this.newName;
         newAccount.value = this.newValue;
         this.accounts.push(newAccount);
-        console.log(this.accounts);
+        this.newName = null;
+        this.newValue = null;
+        this.table.renderRows();
+    }
+
+    deleteAccount(): void {
+        this.accounts = this.accounts.filter(elt => !this.selection.selected.includes(elt));
+        this.table.renderRows();
+    }
+
+    // TODO: finish account sorting
+    sortAccounts(event): void {
+        this.accounts = this.accounts.sort();
+
         this.table.renderRows();
     }
 }
