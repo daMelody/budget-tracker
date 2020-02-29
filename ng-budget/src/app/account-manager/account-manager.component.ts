@@ -47,11 +47,20 @@ export class AccountManagerComponent implements OnInit {
             this.accounts.forEach(row => this.selection.select(row));
     }
 
+    genNumber():  number {
+        if (this.accounts.length <= 0) {
+            return 0;
+        } else {
+            let x: number = this.accounts[this.accounts.length-1].number;
+            return x.valueOf() + 1;
+        }
+    }
+
     addAccount(): void {
         let newAccount: Account = new Account();
-        newAccount.number = this.accounts.length <= 0 ? 0 : this.accounts[0].number++;
+        newAccount.number = this.genNumber();
         newAccount.name = this.newName;
-        newAccount.value = this.newValue;
+        newAccount.value = this.newValue == null ? 0 : this.newValue;
         this.accounts.push(newAccount);
         this.newName = null;
         this.newValue = null;
@@ -59,12 +68,14 @@ export class AccountManagerComponent implements OnInit {
     }
 
     deleteAccount(): void {
+        let temp: Array<number> = new Array<number>();
         this.accounts = this.accounts.filter(elt => !this.selection.selected.includes(elt));
+        this.selection.clear();
         this.table.renderRows();
     }
 
     // TODO: finish account sorting
-    sortAccounts(event): void {
+    sortAccounts(): void {
         this.accounts = this.accounts.sort();
 
         this.table.renderRows();

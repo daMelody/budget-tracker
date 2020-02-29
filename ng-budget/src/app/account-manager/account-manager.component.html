@@ -12,8 +12,7 @@
     <button class="new-account" mat-raised-button (click)="deleteAccount()" id="delete">Delete Account</button>
   </form>
 
-
-  <table mat-table [dataSource]="accounts" class="mat-elevation-z8" matSort (matSortChange)="sortAccounts($event)">
+  <table mat-table [dataSource]="accounts" class="mat-elevation-z8" matSort (matSortChange)="sortAccounts()">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
     <!-- SELECT column -->
