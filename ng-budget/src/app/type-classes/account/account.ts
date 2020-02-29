@@ -1,7 +1,7 @@
 export class Account {
-    number: Number;
-    name: String;
-    value: Number;
+    number: number;
+    name: string;
+    value: number;
 
     constructor() {}
 }

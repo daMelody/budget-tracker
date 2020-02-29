@@ -1,7 +1,7 @@
 export class Transaction {
     date: Date;
-    amount: Number;
-    account: Number;
-    type: String;
-    description: String;
+    amount: number;
+    account: number;
+    type: string;
+    description: string;
 }

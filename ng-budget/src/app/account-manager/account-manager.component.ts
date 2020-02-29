@@ -26,9 +26,9 @@ export class AccountManagerComponent implements OnInit {
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
     @ViewChild(MatTable,{static: true}) table: MatTable<any>;
 
-    newNumber: Number;
-    newName: String;
-    newValue: Number;
+    newNumber: number;
+    newName: string;
+    newValue: number;
 
     constructor() { }
     ngOnInit() { }

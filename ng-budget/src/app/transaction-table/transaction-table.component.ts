@@ -38,10 +38,10 @@ export class TransactionTableComponent implements OnInit {
     }
 
     newDate: Date;
-    newAmount: Number;
-    newAccount: Number;
-    newType: String;
-    newDescription: String;
+    newAmount: number;
+    newAccount: number;
+    newType: string;
+    newDescription: string;
 
     addTransaction(): void {
         let newTransaction = new Transaction();
