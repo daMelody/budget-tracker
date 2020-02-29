@@ -9,8 +9,9 @@ mat-label {
     color: grey;
 }
 
-#add {
-    margin-right: 20px;
+.new-account {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 table {
