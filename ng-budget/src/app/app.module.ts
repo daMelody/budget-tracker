@@ -9,6 +9,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSortModule } from "@angular/material/sort";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from "./app.component";
 import { ConnectBarComponent } from "./connect-bar/connect-bar.component";
@@ -16,6 +17,7 @@ import { OverviewComponent } from "./overview/overview.component";
 import { TransactionTableComponent } from "./transaction-table/transaction-table.component";
 import { AccountManagerComponent } from './account-manager/account-manager.component';
 import { CategoryManagerComponent } from './category-manager/category-manager.component';
+
 
 @NgModule({
     declarations: [
@@ -37,6 +39,7 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
         MatInputModule,
         MatSortModule,
         MatDatepickerModule,
+        MatNativeDateModule
     ],
     providers: [],
     bootstrap: [AppComponent]
