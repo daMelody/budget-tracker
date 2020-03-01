@@ -15,6 +15,7 @@ import { ConnectBarComponent } from "./connect-bar/connect-bar.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { TransactionTableComponent } from "./transaction-table/transaction-table.component";
 import { AccountManagerComponent } from './account-manager/account-manager.component';
+import { CategoryManagerComponent } from './category-manager/category-manager.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { AccountManagerComponent } from './account-manager/account-manager.compo
         ConnectBarComponent,
         OverviewComponent,
         TransactionTableComponent,
-        AccountManagerComponent
+        AccountManagerComponent,
+        CategoryManagerComponent
     ],
     imports: [
         BrowserModule,

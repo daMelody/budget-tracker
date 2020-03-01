@@ -1,5 +1,5 @@
 <div class="account-manager">
-  <form >
+  <form>
     <mat-form-field class="new-account">
       <mat-label>Name</mat-label>
       <input type="text" matInput [(ngModel)]="newName" name="name"/>
@@ -8,7 +8,7 @@
       <mat-label>Value</mat-label>
       <input type="number" matInput [(ngModel)]="newValue" name="value" />
     </mat-form-field>
-    <button class="new-account"mat-raised-button (click)="addAccount()" id="add">Add Account</button>
+    <button class="new-account" mat-raised-button (click)="addAccount()" id="add">Add Account</button>
     <button class="new-account" mat-raised-button (click)="deleteAccount()" id="delete">Delete Account</button>
   </form>
 
