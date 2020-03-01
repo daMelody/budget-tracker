@@ -1,1 +1,17 @@
-<p>overview works!</p>
+<div class="overview">
+  <table id="categories">
+    <th> CATEGORIES </th>
+    <tr *ngFor="let category of categories">
+      <td> {{ category.name }} </td>
+      <td> {{ category.expected }} </td>
+      <td> {{ category.actual }} </td>
+    </tr>
+  </table>
+  <table id="accounts">
+    <th> ACCOUNTS </th>
+    <tr *ngFor="let account of accounts">
+      <td> {{ account.name }} </td>
+      <td> {{ account.value }} </td>
+    </tr>
+  </table>
+</div>

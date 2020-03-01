@@ -2,7 +2,10 @@
   <form>
     <input id="url-connection" [(ngModel)]="urlConnection"
       placeholder="Please copy the url from your BUDGET_TRACKER Google Sheets page" autofocus required
-      [ngModelOptions]="{standalone: true}" size=75% />
+      [ngModelOptions]="{standalone: true}" size=60% />
     <button mat-raised-button (click)="submitUrl()">Connect!</button>
+    <a routerLink="categories" routerLinkActive="active">Categories</a>
+    <a routerLink="accounts" routerLinkActive="active">Accounts</a>
+    <a routerLink="transactions" routerLinkActive="active">Transactions</a>
   </form>
 </div>

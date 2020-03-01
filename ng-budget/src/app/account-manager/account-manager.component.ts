@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Account } from '../type-classes/account/account';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-account-manager',
@@ -10,7 +11,7 @@ import { Account } from '../type-classes/account/account';
 })
 export class AccountManagerComponent implements OnInit {
     displayedColumns: string[] = ["select", "number", "name", "value"];
-    accounts: Array<Account> = new Array<Account>();
+    accounts: Array<Account>;
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
     @ViewChild(MatTable,{static: true}) table: MatTable<Account>;
 
@@ -18,8 +19,11 @@ export class AccountManagerComponent implements OnInit {
     newName: string;
     newValue: number;
 
-    constructor() { }
-    ngOnInit(): void { }
+    constructor(private router: Router) { }
+    ngOnInit(): void {
+        let acc = JSON.parse(sessionStorage.getItem("accounts"));
+        this.accounts = acc != null ? acc : new Array<Account>();
+    }
 
     /* for SELECTION */
 
@@ -67,6 +71,11 @@ export class AccountManagerComponent implements OnInit {
             this.selection.clear();
             this.table.renderRows();
         }
+    }
+
+    saveAccounts(): void {
+        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
+        this.router.navigate([""]);
     }
 
     sortAccounts(event): void {

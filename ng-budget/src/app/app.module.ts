@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -18,6 +19,11 @@ import { TransactionTableComponent } from "./transaction-table/transaction-table
 import { AccountManagerComponent } from './account-manager/account-manager.component';
 import { CategoryManagerComponent } from './category-manager/category-manager.component';
 
+const routes: Routes = [
+    { path: 'accounts', component: AccountManagerComponent },
+    { path: 'categories', component: CategoryManagerComponent },
+    { path: 'transactions', component: TransactionTableComponent }
+];
 
 @NgModule({
     declarations: [
@@ -30,6 +36,7 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
     ],
     imports: [
         BrowserModule,
+        RouterModule.forRoot(routes),
         BrowserAnimationsModule,
         FormsModule,
         MatFormFieldModule,

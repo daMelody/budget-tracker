@@ -9,8 +9,10 @@
       <input type="number" matInput [(ngModel)]="newValue" name="value" />
     </mat-form-field>
     <button class="new-account" mat-raised-button (click)="addAccount()" id="add">Add Account</button>
-    <button class="new-account" mat-raised-button (click)="deleteAccount()" id="delete">Delete Account</button>
   </form>
+
+  <button mat-raised-button (click)="deleteAccount()" id="delete">Delete Account</button>
+  <button mat-raised-button (click)="saveAccounts()" id="save">Save Accounts</button>
 
   <table mat-table [dataSource]="accounts" class="mat-elevation-z8" matSort (matSortChange)="sortAccounts($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

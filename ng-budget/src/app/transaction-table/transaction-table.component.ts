@@ -4,8 +4,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Transaction } from '../type-classes/transaction/transaction';
-import { stringify } from 'querystring';
-
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-transaction-table',
@@ -24,7 +23,7 @@ export class TransactionTableComponent implements OnInit {
     newCategory: string;
     newDescription: string;
 
-    constructor() { }
+    constructor(private router: Router) { }
     ngOnInit() { }
 
     isAllSelected(): Boolean {
@@ -44,19 +43,19 @@ export class TransactionTableComponent implements OnInit {
             answer = confirm("Are you sure you want to add this Transaction?");
         }
         if (answer) {
-        let newTransaction = new Transaction();
-        newTransaction.date = this.newDate;
-        newTransaction.amount = this.newAmount;
-        newTransaction.account = this.newAccount;
-        newTransaction.category = this.newCategory;
-        newTransaction.description = this.newDescription;
-        this.transactions.push(newTransaction);
-        this.newDate = null;
-        this.newAmount = null;
-        this.newAccount = null;
-        this.newCategory = null;
-        this.newDescription = null;
-        this.table.renderRows();
+            let newTransaction = new Transaction();
+            newTransaction.date = this.newDate;
+            newTransaction.amount = this.newAmount;
+            newTransaction.account = this.newAccount;
+            newTransaction.category = this.newCategory;
+            newTransaction.description = this.newDescription;
+            this.transactions.push(newTransaction);
+            this.newDate = null;
+            this.newAmount = null;
+            this.newAccount = null;
+            this.newCategory = null;
+            this.newDescription = null;
+            this.table.renderRows();
         }
     }
 
@@ -66,6 +65,11 @@ export class TransactionTableComponent implements OnInit {
             this.selection.clear();
             this.table.renderRows();
         }
+    }
+
+    saveTransactions(): void {
+        sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
+        this.router.navigate([""]);
     }
 
     sortTransaction(event): void {

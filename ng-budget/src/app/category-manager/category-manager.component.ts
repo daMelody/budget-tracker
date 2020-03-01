@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Category } from '../type-classes/category/category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-manager',
@@ -10,17 +11,19 @@ import { Category } from '../type-classes/category/category';
 })
 export class CategoryManagerComponent implements OnInit {
     displayedColumns: string[] = ["select", "code", "name", "expected", "actual"];
-    categories: Array<Category> = new Array<Category>();
+    categories: Array<Category>;
     selection: SelectionModel<Category> = new SelectionModel<Category>(true, []);
     @ViewChild(MatTable,{static: true}) table: MatTable<Category>;
 
     newCode: string;
     newName: string;
     newExpected: number;
-    newActual: number = 0;
 
-    constructor() { }
-    ngOnInit(): void { }
+    constructor(private router: Router) { }
+    ngOnInit(): void {
+        let cat = JSON.parse(sessionStorage.getItem("categories"))
+        this.categories = cat != null ? cat : new Array<Category>();
+    }
 
     /* for SELECTION */
 
@@ -61,6 +64,11 @@ export class CategoryManagerComponent implements OnInit {
             this.selection.clear();
             this.table.renderRows();
         }
+    }
+
+    saveCategories(): void {
+        sessionStorage.setItem("categories", JSON.stringify(this.categories));
+        this.router.navigate([""]);
     }
 
     sortCategory(event): void {

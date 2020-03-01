@@ -10,11 +10,13 @@
     </mat-form-field>
     <mat-form-field class="new-category">
       <mat-label>Expected</mat-label>
-      <input type="text" matInput [(ngModel)]="newExpected" name="expected" />
+      <input type="number" matInput [(ngModel)]="newExpected" name="expected" />
     </mat-form-field>
     <button class="new-category" mat-raised-button (click)="addCategory()" id="add">Add Category</button>
-    <button class="new-category" mat-raised-button (click)="deleteCategory()" id="delete">Delete Category</button>
   </form>
+
+  <button mat-raised-button (click)="deleteCategory()" id="delete">Delete Category</button>
+  <button mat-raised-button (click)="saveCategories()" id="save">Save Categories</button>
 
   <table mat-table [dataSource]="categories" class="mat-elevation-z8" matSort (matSortChange)="sortCategory($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
