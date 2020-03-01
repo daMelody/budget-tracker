@@ -43,27 +43,38 @@
     <!-- DATE column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
-      <td mat-cell *matCellDef="let element"> {{ element.date | date: "dd/MM/yyyy" }} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="element.date"style="width: 75px" />
+      <mat-datepicker #picker></mat-datepicker>
+      </td>
     </ng-container>
     <!-- AMOUNT column -->
     <ng-container matColumnDef="amount">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> AMOUNT </th>
-      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.amount" style="width: 60px" />
+      </td>
     </ng-container>
     <!-- ACCOUNT column -->
     <ng-container matColumnDef="account">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT </th>
-      <td mat-cell *matCellDef="let element"> {{element.account}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.account" style="width: 60px" />
+      </td>
     </ng-container>
     <!-- TYPE column -->
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> CATEGORY </th>
-      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.category" style="width: 60px"/>
+      </td>
     </ng-container>
     <!-- DESCRIPTION column-->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
-      <td mat-cell *matCellDef="let element"> {{ element.description}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.description" style="width: 150px" />
+      </td>
     </ng-container>
   </table>
 </div>

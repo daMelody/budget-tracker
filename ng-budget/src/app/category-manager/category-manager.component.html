@@ -33,22 +33,30 @@
     <!-- CODE -->
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> CODE </th>
-      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.code" style="width: 60px" />
+      </td>
     </ng-container>
     <!-- NAME -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.name" style="width: 100px" />
+      </td>
     </ng-container>
     <!-- EXPECTED -->
     <ng-container matColumnDef="expected">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> EXPECTED </th>
-      <td mat-cell *matCellDef="let element"> {{element.expected}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.expected" style="width: 75px" />
+      </td>
     </ng-container>
     <!-- ACTUAL -->
     <ng-container matColumnDef="actual">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTUAL </th>
-      <td mat-cell *matCellDef="let element"> {{element.actual}} </td>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.actual" style="width: 75px" />
+      </td>
     </ng-container>
   </table>
 </div>
