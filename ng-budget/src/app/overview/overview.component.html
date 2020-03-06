@@ -1,17 +1,48 @@
 <div class="overview">
-  <table id="categories">
-    <th> CATEGORIES </th>
-    <tr *ngFor="let category of categories">
-      <td> {{ category.name }} </td>
-      <td> {{ category.expected }} </td>
-      <td> {{ category.actual }} </td>
-    </tr>
-  </table>
-  <table id="accounts">
-    <th> ACCOUNTS </th>
-    <tr *ngFor="let account of accounts">
-      <td> {{ account.name }} </td>
-      <td> {{ account.value }} </td>
-    </tr>
-  </table>
+  <div class="category">
+    <table mat-table id="categories" [dataSource]="categories" name="categoryTable">
+      <tr mat-header-row *matHeaderRowDef="categoryColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: categoryColumns;"></tr>
+      <!-- CODE -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> CODE </th>
+        <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
+      </ng-container>
+      <!-- NAME -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> NAME </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+      <!-- EXPECTED -->
+      <ng-container matColumnDef="expected">
+        <th mat-header-cell *matHeaderCellDef> EXPECTED </th>
+        <td mat-cell *matCellDef="let element"> {{ element.expected }} </td>
+      </ng-container>
+      <!-- ACTUAL -->
+      <ng-container matColumnDef="actual">
+        <th mat-header-cell *matHeaderCellDef> ACTUAL </th>
+        <td mat-cell *matCellDef="let element"> {{ element.actual }} </td>
+      </ng-container>
+    </table>
+  </div>
+  <div class="accounts">
+    <table mat-table id="accounts" [dataSource]="accounts" name="accountTable">
+      <tr mat-header-row *matHeaderRowDef="accountColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: accountColumns;"></tr>
+      <!-- NUMBER -->
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> NUMBER </th>
+        <td mat-cell *matCellDef="let element"> {{ element.number }} </td>
+      </ng-container>
+      <!-- NAME -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> NAME </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef> VALUE </th>
+        <td mat-cell *matCellDef="let element"> {{ element.value }} </td>
+      </ng-container>
+    </table>
+  </div>
 </div>

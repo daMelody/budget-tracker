@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatTable } from '@angular/material/table';
 import { Account } from '../type-classes/account/account'
 import { Category } from '../type-classes/category/category';
 import { Transaction } from '../type-classes/transaction/transaction';
@@ -9,12 +10,18 @@ import { Transaction } from '../type-classes/transaction/transaction';
     styleUrls: ["./overview.component.css"]
 })
 export class OverviewComponent implements OnInit {
-    accounts: Array<Account>;
-    categories: Array<Category>;
-    transactions: Array<Transaction>;
+    accounts: Array<Account> = new Array<Account>();
+    categories: Array<Category> = new Array<Category>();
+    transactions: Array<Transaction> = new Array<Transaction>();;
 
     accountMap: Map<number,Account> = new Map<number,Account>();
     categoryMap: Map<string,Category> = new Map<string,Category>();
+
+    accountColumns: string[] = ["number", "name", "value"];
+    categoryColumns: string[] = ["code", "name", "expected", "actual"];
+
+    @ViewChild(MatTable,{static: true}) accountTable: MatTable<Account>;
+    @ViewChild(MatTable,{static: true}) categoryTable: MatTable<Category>;
 
     constructor() {}
     ngOnInit() {
@@ -29,9 +36,12 @@ export class OverviewComponent implements OnInit {
         console.log(this.categoryMap);
         for (let i=0; i < this.transactions.length; i++) {
             let acc: number = this.transactions[i].account;
-            this.accountMap.get(acc).value += this.transactions[i].amount;
+            let x: number = this.accountMap.get(acc).value + this.transactions[i].amount;
+            console.log(this.transactions[i].amount.valueOf());
+            this.accountMap.get(acc).value = x;
             let cat: string = this.transactions[i].category;
-            this.categoryMap.get(cat).actual += this.transactions[i].amount;
+            let y: number = this.categoryMap.get(cat).actual + this.transactions[i].amount;
+            this.categoryMap.get(cat).actual = y;
         }
         this.accounts = Array.from(this.accountMap.values());
         this.categories = Array.from(this.categoryMap.values());
