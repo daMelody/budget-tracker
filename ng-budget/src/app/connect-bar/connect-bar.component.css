@@ -11,6 +11,6 @@ input {
     font-size: large;
 }
 
-button {
+#submit {
     margin-left: 20px;
 }
