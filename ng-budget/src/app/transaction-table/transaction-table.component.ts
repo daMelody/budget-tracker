@@ -25,7 +25,8 @@ export class TransactionTableComponent implements OnInit {
 
     constructor(private router: Router) { }
     ngOnInit() {
-        this.transactions = JSON.parse(sessionStorage.getItem("transactions"));
+        let sact = JSON.parse(sessionStorage.getItem("transactions"))
+        this.transactions = sact != null ? sact : new Array<Transaction>();
     }
 
     isAllSelected(): Boolean {
