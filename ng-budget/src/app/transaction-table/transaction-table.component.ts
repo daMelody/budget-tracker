@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Transaction } from '../type-classes/transaction/transaction';
 import { Router } from '@angular/router';
+import { Account } from '../type-classes/account/account';
+import { Category } from '../type-classes/category/category';
 
 @Component({
     selector: 'app-transaction-table',
@@ -17,6 +20,9 @@ export class TransactionTableComponent implements OnInit {
     selection: SelectionModel<Transaction> = new SelectionModel<Transaction>(true, []);
     @ViewChild(MatTable,{static: true}) table: MatTable<Transaction>;
 
+    accounts: Array<Account> = new Array<Account>();
+    categories: Array<Category> = new Array<Category>();
+
     newDate: Date;
     newAmount: number;
     newAccount: number;
@@ -27,6 +33,8 @@ export class TransactionTableComponent implements OnInit {
     ngOnInit() {
         let sact = JSON.parse(sessionStorage.getItem("transactions"))
         this.transactions = sact != null ? sact : new Array<Transaction>();
+        this.accounts = JSON.parse(sessionStorage.getItem("accounts"));
+        this.categories = JSON.parse(sessionStorage.getItem("categories"));
     }
 
     isAllSelected(): Boolean {
@@ -40,6 +48,7 @@ export class TransactionTableComponent implements OnInit {
             ? this.selection.clear()
             : this.transactions.forEach(row => this.selection.select(row));
     }
+
     addTransaction(): void {
         let answer: boolean = true;
         if (this.newDate == null || this.newAmount == null || this.newAccount == null || this.newCategory == null || this.newDescription == null) {

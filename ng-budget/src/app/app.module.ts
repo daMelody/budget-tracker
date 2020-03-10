@@ -12,6 +12,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSortModule } from "@angular/material/sort";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from "./app.component";
 import { ConnectBarComponent } from "./connect-bar/connect-bar.component";
@@ -49,7 +50,8 @@ const routes: Routes = [
         MatSortModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatMenuModule
+        MatMenuModule,
+        MatSelectModule
     ],
     providers: [],
     bootstrap: [AppComponent]
