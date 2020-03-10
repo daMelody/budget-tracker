@@ -32,16 +32,11 @@ export class OverviewComponent implements OnInit {
     }
 
     calculate(): void {
-        console.log(this.accountMap);
-        console.log(this.categoryMap);
         for (let i=0; i < this.transactions.length; i++) {
             let acc: number = this.transactions[i].account;
-            let x: number = this.accountMap.get(acc).value + this.transactions[i].amount;
-            console.log(this.transactions[i].amount.valueOf());
-            this.accountMap.get(acc).value = x;
+            this.accountMap.get(acc).value += this.transactions[i].amount;
             let cat: string = this.transactions[i].category;
-            let y: number = this.categoryMap.get(cat).actual + this.transactions[i].amount;
-            this.categoryMap.get(cat).actual = y;
+            this.categoryMap.get(cat).actual += this.transactions[i].amount;
         }
         this.accounts = Array.from(this.accountMap.values());
         this.categories = Array.from(this.categoryMap.values());

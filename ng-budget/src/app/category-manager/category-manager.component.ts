@@ -68,7 +68,6 @@ export class CategoryManagerComponent implements OnInit {
 
     saveCategories(): void {
         sessionStorage.setItem("categories", JSON.stringify(this.categories));
-        this.router.navigate([""]);
     }
 
     sortCategory(event): void {

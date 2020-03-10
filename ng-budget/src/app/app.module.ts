@@ -23,7 +23,8 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
 const routes: Routes = [
     { path: 'accounts', component: AccountManagerComponent },
     { path: 'categories', component: CategoryManagerComponent },
-    { path: 'transactions', component: TransactionTableComponent }
+    { path: 'transactions', component: TransactionTableComponent },
+    { path: 'overview', component: OverviewComponent }
 ];
 
 @NgModule({

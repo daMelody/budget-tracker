@@ -72,7 +72,6 @@ export class TransactionTableComponent implements OnInit {
 
     saveTransactions(): void {
         sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
-        this.router.navigate([""]);
     }
 
     sortTransaction(event): void {

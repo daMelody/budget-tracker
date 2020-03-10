@@ -75,7 +75,6 @@ export class AccountManagerComponent implements OnInit {
 
     saveAccounts(): void {
         sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
-        this.router.navigate([""]);
     }
 
     sortAccounts(event): void {

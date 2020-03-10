@@ -13,18 +13,23 @@ export class ConnectBarComponent implements OnInit {
     constructor(private router: Router) {}
     ngOnInit(): void {}
 
-    submitUrl() {
+    submitUrl(): void {
         console.log(this.urlConnection);
     }
 
-    openAccounts() {
+    openAccounts(): void {
         this.router.navigateByUrl("accounts");
     }
 
-    openCategories() {
+    openCategories(): void {
         this.router.navigateByUrl("categories");
     }
-    openTransactions() {
+
+    openOverview(): void {
+        this.router.navigateByUrl("overview");
+    }
+
+    openTransactions(): void {
         this.router.navigateByUrl("transactions");
     }
 }
