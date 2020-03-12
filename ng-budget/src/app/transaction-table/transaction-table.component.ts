@@ -68,6 +68,7 @@ export class TransactionTableComponent implements OnInit {
             this.newCategory = null;
             this.newDescription = null;
             this.table.renderRows();
+            sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
         }
     }
 
@@ -76,11 +77,8 @@ export class TransactionTableComponent implements OnInit {
             this.transactions = this.transactions.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
             this.table.renderRows();
+            sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
         }
-    }
-
-    saveTransactions(): void {
-        sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
     }
 
     sortTransaction(event): void {

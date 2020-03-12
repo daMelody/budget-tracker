@@ -55,6 +55,7 @@ export class CategoryManagerComponent implements OnInit {
             this.newCode = null;
             this.newExpected = null
             this.table.renderRows();
+            sessionStorage.setItem("categories", JSON.stringify(this.categories));
         }
     }
 
@@ -63,11 +64,8 @@ export class CategoryManagerComponent implements OnInit {
             this.categories = this.categories.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
             this.table.renderRows();
+            sessionStorage.setItem("categories", JSON.stringify(this.categories));
         }
-    }
-
-    saveCategories(): void {
-        sessionStorage.setItem("categories", JSON.stringify(this.categories));
     }
 
     sortCategory(event): void {

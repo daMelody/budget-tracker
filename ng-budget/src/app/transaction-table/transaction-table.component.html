@@ -34,7 +34,6 @@
   </form>
 
   <button mat-raised-button (click)="deleteTransaction()" id="delete">Delete Transaction</button>
-  <button mat-raised-button (click)="saveTransactions()" id="save">Save Transactions</button>
 
   <table mat-table [dataSource]="transactions" class="mat-elevation-z8" matSort (matSortChange)="sortTransaction($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

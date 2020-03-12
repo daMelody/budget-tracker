@@ -62,6 +62,7 @@ export class AccountManagerComponent implements OnInit {
             this.newName = null;
             this.newValue = null;
             this.table.renderRows();
+            sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
         }
     }
 
@@ -70,11 +71,8 @@ export class AccountManagerComponent implements OnInit {
             this.accounts = this.accounts.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
             this.table.renderRows();
+            sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
         }
-    }
-
-    saveAccounts(): void {
-        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
     }
 
     sortAccounts(event): void {
