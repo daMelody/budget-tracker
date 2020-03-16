@@ -1,12 +1,15 @@
 .connect-bar {
     background-color: darkred;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
-input {
-    border-radius: 5px;
-    font-size: large;
+#name {
+    margin-left: 10px;
+}
+
+.navigate {
+    text-align: right;
+    margin-top: 5px;
 }

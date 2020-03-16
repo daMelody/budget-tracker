@@ -1,11 +1,9 @@
 <div class="connect-bar">
+  <p id="name">BUDGET TRACKER</p>
   <div class="navigate">
-    <button mat-button [matMenuTriggerFor]="menu">Navigate</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openAccounts()">Accounts</button>
-      <button mat-menu-item (click)="openCategories()">Categories</button>
-      <button mat-menu-item (click)="openOverview()">Overview</button>
-      <button mat-menu-item (click)="openTransactions()">Transactions</button>
-    </mat-menu>
+    <button mat-button (click)="openAccounts()">Accounts</button>
+    <button mat-button (click)="openCategories()">Categories</button>
+    <button mat-button (click)="openOverview()">Overview</button>
+    <button mat-button (click)="openTransactions()">Transactions</button>
   </div>
 </div>
