@@ -66,6 +66,7 @@ export class FileService {
                     case 0: account.number = Number.parseInt(cell);
                     break;
                     case 1: account.name = cell;
+                    break;
                     default: console.log("bad index");
                 }
                 cell = "";
