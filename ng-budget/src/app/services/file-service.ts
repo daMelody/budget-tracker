@@ -115,6 +115,36 @@ export class FileService {
 
     parseCLStoTransaction(stuff: string): Array<Transaction> {
         let transactions: Array<Transaction> = new Array<Transaction>();
+        let transaction: Transaction = new Transaction();
+        let index: number = 0;
+        let cell: string = "";
+        for (const ch of stuff) {
+            if (ch === '\n') {
+                transaction.description = cell;
+                transactions.push(transaction);
+                transaction = new Transaction();
+                index = 0;
+                cell = "";
+            } else if (ch === ',') {
+                switch (index) {
+                    case 0: transaction.date = new Date(cell);
+                    break;
+                    case 1: transaction.amount = Number.parseFloat(cell);
+                    break;
+                    case 2: transaction.account = Number.parseInt(cell);
+                    break;
+                    case 3: transaction.category = cell;
+                    break;
+                    default: console.log("bad index");
+                }
+                cell = "";
+                index++;
+            } else if (ch === ' ') {
+                continue;
+            } else {
+                cell += ch;
+            }
+        }
         return transactions;
     }
 }
