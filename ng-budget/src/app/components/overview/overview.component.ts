@@ -26,8 +26,10 @@ export class OverviewComponent implements OnInit {
 
     constructor() {}
     ngOnInit() {
-        JSON.parse(sessionStorage.getItem("accounts")).forEach(acc => this.accountMap.set(acc.number, acc));
-        JSON.parse(sessionStorage.getItem("categories")).forEach(cat => this.categoryMap.set(cat.code, cat));
+        this.accounts = JSON.parse(sessionStorage.getItem("accounts"));
+        this.accounts != null ? this.accounts.forEach(acc => this.accountMap.set(acc.number, acc)) : null;
+        this.categories = JSON.parse(sessionStorage.getItem("categories"));
+        this.categories != null ? this.categories.forEach(cat => this.categoryMap.set(cat.code, cat)) : null;
         this.transactions = JSON.parse(sessionStorage.getItem("transactions"));
         if (this.transactions != null) this.calculate();
     }
