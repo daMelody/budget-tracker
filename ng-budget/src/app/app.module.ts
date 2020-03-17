@@ -15,17 +15,19 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from "./app.component";
-import { ConnectBarComponent } from "./connect-bar/connect-bar.component";
-import { OverviewComponent } from "./overview/overview.component";
-import { TransactionTableComponent } from "./transaction-table/transaction-table.component";
-import { AccountManagerComponent } from './account-manager/account-manager.component';
-import { CategoryManagerComponent } from './category-manager/category-manager.component';
+import { ConnectBarComponent } from "./components/connect-bar/connect-bar.component";
+import { OverviewComponent } from "./components/overview/overview.component";
+import { TransactionTableComponent } from "./components/transaction-table/transaction-table.component";
+import { AccountManagerComponent } from './components/account-manager/account-manager.component';
+import { CategoryManagerComponent } from './components/category-manager/category-manager.component';
+import { LoadingDockComponent } from './components/loading-dock/loading-dock.component';
 
 const routes: Routes = [
     { path: 'accounts', component: AccountManagerComponent },
     { path: 'categories', component: CategoryManagerComponent },
     { path: 'transactions', component: TransactionTableComponent },
-    { path: 'overview', component: OverviewComponent }
+    { path: 'overview', component: OverviewComponent },
+    { path: '', component: LoadingDockComponent }
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ const routes: Routes = [
         OverviewComponent,
         TransactionTableComponent,
         AccountManagerComponent,
-        CategoryManagerComponent
+        CategoryManagerComponent,
+        LoadingDockComponent
     ],
     imports: [
         BrowserModule,

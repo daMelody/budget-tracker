@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTable } from '@angular/material/table';
-import { Account } from '../type-classes/account/account'
-import { Category } from '../type-classes/category/category';
-import { Transaction } from '../type-classes/transaction/transaction';
+import { Account } from 'src/app/type-classes/account/account';
+import { Category } from 'src/app/type-classes/category/category';
+import { Transaction } from 'src/app/type-classes/transaction/transaction';
+
 
 @Component({
     selector: "app-overview",

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Category } from '../type-classes/category/category';
 import { Router } from '@angular/router';
+import { Category } from 'src/app/type-classes/category/category';
 
 @Component({
   selector: 'app-category-manager',

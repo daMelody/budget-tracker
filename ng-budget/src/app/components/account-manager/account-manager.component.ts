@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Account } from '../type-classes/account/account';
 import { Router } from '@angular/router';
+import { Account } from 'src/app/type-classes/account/account';
 
 @Component({
     selector: 'app-account-manager',

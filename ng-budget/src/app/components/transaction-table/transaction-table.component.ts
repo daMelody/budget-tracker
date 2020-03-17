@@ -4,10 +4,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Transaction } from '../type-classes/transaction/transaction';
 import { Router } from '@angular/router';
-import { Account } from '../type-classes/account/account';
-import { Category } from '../type-classes/category/category';
+import { Transaction } from 'src/app/type-classes/transaction/transaction';
+import { Category } from 'src/app/type-classes/category/category';
+import { Account } from 'src/app/type-classes/account/account';
 
 @Component({
     selector: 'app-transaction-table',
