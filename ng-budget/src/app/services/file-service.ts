@@ -81,6 +81,34 @@ export class FileService {
 
     parseCLStoCategory(stuff: string): Array<Category> {
         let categories: Array<Category> = new Array<Category>();
+        let category: Category = new Category();
+        let index: number = 0;
+        let cell: string = "";
+        for (const ch of stuff) {
+            if (ch === '\n') {
+                category.actual = Number.parseFloat(cell);
+                categories.push(category);
+                category = new Category();
+                index = 0;
+                cell = "";
+            } else if (ch === ',') {
+                switch (index) {
+                    case 0: category.code = cell;
+                    break;
+                    case 1: category.name = cell;
+                    break;
+                    case 2: category.expected = Number.parseFloat(cell);
+                    break;
+                    default: console.log("bad index");
+                }
+                cell = "";
+                index++;
+            } else if (ch === ' ') {
+                continue;
+            } else {
+                cell += ch;
+            }
+        }
         return categories;
     }
 
