@@ -28,4 +28,8 @@ export class ConnectBarComponent implements OnInit {
     openTransactions(): void {
         this.router.navigateByUrl("transactions");
     }
+
+    openLoadingDock(): void {
+        this.router.navigateByUrl("");
+    }
 }
