@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ConnectBarComponent implements OnInit {
 
-    constructor(private router: Router) {}
-    ngOnInit(): void {}
+    constructor(private router: Router) { }
+    ngOnInit(): void { }
 
     openAccounts(): void {
         this.router.navigateByUrl("accounts");

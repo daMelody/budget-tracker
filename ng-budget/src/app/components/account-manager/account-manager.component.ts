@@ -13,7 +13,7 @@ export class AccountManagerComponent implements OnInit {
     displayedColumns: string[] = ["select", "number", "name", "value"];
     accounts: Array<Account>;
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
-    @ViewChild(MatTable,{static: true}) table: MatTable<Account>;
+    @ViewChild(MatTable, { static: true }) table: MatTable<Account>;
 
     newNumber: number;
     newName: string;
@@ -39,10 +39,10 @@ export class AccountManagerComponent implements OnInit {
             this.accounts.forEach(row => this.selection.select(row));
     }
 
-    genNumber():  number {
+    genNumber(): number {
         let max: number = 0;
         if (this.accounts.length <= 0) return 0;
-        for (let i=0; i < this.accounts.length; i++) {
+        for (let i = 0; i < this.accounts.length; i++) {
             if (max < this.accounts[i].number) max = this.accounts[i].number;
         }
         return max + 1;
@@ -78,11 +78,11 @@ export class AccountManagerComponent implements OnInit {
     sortAccounts(event): void {
         switch (event.active) {
             case "number": this.accounts = this.accounts.sort(this.numberSort);
-            break;
+                break;
             case "name": this.accounts = this.accounts.sort(this.nameSort);
-            break;
+                break;
             case "value": this.accounts = this.accounts.sort(this.valueSort);
-            break;
+                break;
             default: console.log("Invalid sort parameter");
         }
         if (event.direction == "asc") {

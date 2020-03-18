@@ -18,7 +18,7 @@ export class TransactionTableComponent implements OnInit {
     displayedColumns: string[] = ["select", "date", "amount", "account", "category", "description"];
     transactions: Array<Transaction> = new Array<Transaction>();
     selection: SelectionModel<Transaction> = new SelectionModel<Transaction>(true, []);
-    @ViewChild(MatTable,{static: true}) table: MatTable<Transaction>;
+    @ViewChild(MatTable, { static: true }) table: MatTable<Transaction>;
 
     accounts: Array<Account> = new Array<Account>();
     categories: Array<Category> = new Array<Category>();
@@ -84,13 +84,13 @@ export class TransactionTableComponent implements OnInit {
     sortTransaction(event): void {
         switch (event.active) {
             case "date": this.transactions = this.transactions.sort(this.dateSort);
-            break;
+                break;
             case "amount": this.transactions = this.transactions.sort(this.amountSort);
-            break;
+                break;
             case "account": this.transactions = this.transactions.sort(this.accountSort);
-            break;
+                break;
             case "category": this.transactions = this.transactions.sort(this.categorySort);
-            break;
+                break;
             default: console.log("Invalid sort parameter");
         }
         if (event.direction == "asc") {

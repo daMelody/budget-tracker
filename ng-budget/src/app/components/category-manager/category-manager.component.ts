@@ -5,15 +5,15 @@ import { Router } from '@angular/router';
 import { Category } from 'src/app/type-classes/category/category';
 
 @Component({
-  selector: 'app-category-manager',
-  templateUrl: './category-manager.component.html',
-  styleUrls: ['./category-manager.component.css']
+    selector: 'app-category-manager',
+    templateUrl: './category-manager.component.html',
+    styleUrls: ['./category-manager.component.css']
 })
 export class CategoryManagerComponent implements OnInit {
     displayedColumns: string[] = ["select", "code", "name", "expected", "actual"];
     categories: Array<Category>;
     selection: SelectionModel<Category> = new SelectionModel<Category>(true, []);
-    @ViewChild(MatTable,{static: true}) table: MatTable<Category>;
+    @ViewChild(MatTable, { static: true }) table: MatTable<Category>;
 
     newCode: string;
     newName: string;
@@ -71,11 +71,11 @@ export class CategoryManagerComponent implements OnInit {
     sortCategory(event): void {
         switch (event.active) {
             case "code": this.categories = this.categories.sort(this.codeSort);
-            break;
+                break;
             case "name": this.categories = this.categories.sort(this.nameSort);
-            break;
+                break;
             case "expected": this.categories = this.categories.sort(this.expectedSort);
-            break;
+                break;
             case "actual": this.categories = this.categories.sort(this.actualSort);
             default: console.log("Invalid sort parameter");
         }

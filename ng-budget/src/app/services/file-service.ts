@@ -15,7 +15,7 @@ export class FileService {
         this.reader.onload = (e) => {
             text = this.reader.result;
             let title: string = file.name;
-            this.clsParse(text.toString(),title);
+            this.clsParse(text.toString(), title);
         }
         this.reader.readAsText(file);
     }
@@ -64,9 +64,9 @@ export class FileService {
             } else if (ch === ',') {
                 switch (index) {
                     case 0: account.number = Number.parseInt(cell);
-                    break;
+                        break;
                     case 1: account.name = cell;
-                    break;
+                        break;
                     default: console.log("bad index");
                 }
                 cell = "";
@@ -95,11 +95,11 @@ export class FileService {
             } else if (ch === ',') {
                 switch (index) {
                     case 0: category.code = cell;
-                    break;
+                        break;
                     case 1: category.name = cell;
-                    break;
+                        break;
                     case 2: category.expected = Number.parseFloat(cell);
-                    break;
+                        break;
                     default: console.log("bad index");
                 }
                 cell = "";
@@ -128,13 +128,13 @@ export class FileService {
             } else if (ch === ',') {
                 switch (index) {
                     case 0: transaction.date = new Date(cell);
-                    break;
+                        break;
                     case 1: transaction.amount = Number.parseFloat(cell);
-                    break;
+                        break;
                     case 2: transaction.account = Number.parseInt(cell);
-                    break;
+                        break;
                     case 3: transaction.category = cell;
-                    break;
+                        break;
                     default: console.log("bad index");
                 }
                 cell = "";
