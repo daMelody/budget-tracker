@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { Router } from '@angular/router';
+import { FileService } from 'src/app/services/file-service';
 
 @Component({
     selector: "app-connect-bar",
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ConnectBarComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private fileService: FileService) { }
     ngOnInit(): void { }
 
     openAccounts(): void {
@@ -31,5 +32,9 @@ export class ConnectBarComponent implements OnInit {
 
     openLoadingDock(): void {
         this.router.navigateByUrl("");
+    }
+
+    saveFiles(): void {
+        this.fileService.write();
     }
 }
