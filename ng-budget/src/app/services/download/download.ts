@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Account } from '../type-classes/account/account';
-import { Category } from '../type-classes/category/category';
-import { Transaction } from '../type-classes/transaction/transaction';
+import { Account } from '../../type-classes/account/account';
+import { Category } from '../../type-classes/category/category';
+import { Transaction } from '../../type-classes/transaction/transaction';
 
 @Injectable({
     providedIn: 'root',

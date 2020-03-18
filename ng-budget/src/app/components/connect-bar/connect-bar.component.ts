@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { Router } from '@angular/router';
-import { FileService } from 'src/app/services/file-service';
+import { FileService } from 'src/app/services/file-service/file-service';
 
 @Component({
     selector: "app-connect-bar",

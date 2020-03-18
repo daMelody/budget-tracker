@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileService } from 'src/app/services/file-service';
+import { FileService } from 'src/app/services/file-service/file-service';
 
 @Component({
     selector: 'app-loading-dock',
