@@ -1,0 +1,28 @@
+<div class="loading-dock">
+  <table>
+    <tr>
+      <td>Load Account.cls: </td>
+      <td>
+        <input type="file" class="file-connection"
+          placeholder="Please input the file address from your Account spreadsheet"
+          required (change)="fileHandler($event)"/>
+      </td>
+    </tr>
+    <tr>
+      <td>Load Category.cls: </td>
+      <td>
+        <input type="file" class="file-connection"
+          placeholder="Please input the file address from your Category spreadsheet"
+          required (change)="fileHandler($event)"/>
+      </td>
+    </tr>
+    <tr>
+      <td>Load Transaction.cls: </td>
+      <td>
+        <input type="file" class="file-connection"
+        placeholder="Please input the file address from your Transaction spreadsheet"
+        required (change)="fileHandler($event)"/>
+      </td>
+    </tr>
+  </table>
+</div>

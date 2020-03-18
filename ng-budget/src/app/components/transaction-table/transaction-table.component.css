@@ -1,0 +1,19 @@
+.transaction-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-label, mat-datepicker-toggle {
+    color: grey;
+}
+
+.new-transaction {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+table {
+    width: 70%;
+}

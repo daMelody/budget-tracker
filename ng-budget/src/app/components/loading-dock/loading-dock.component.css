@@ -1,0 +1,15 @@
+.loading-dock {
+    margin-top: 15%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+tr {
+    padding: 20px;
+}
+
+td {
+    padding: 10px;
+    font-size: 130%;
+}

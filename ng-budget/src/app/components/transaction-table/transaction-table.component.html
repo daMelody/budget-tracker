@@ -1,0 +1,89 @@
+<div class="transaction-table">
+  <form>
+    <mat-form-field class="new-transaction">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="newDate" name="date"/>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" [(ngModel)]="newAmount" name="amount"/>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Account</mat-label>
+      <mat-select name="account" [(ngModel)]="newAccount">
+        <mat-option *ngFor="let account of accounts" [value]="account.number">
+          {{ account.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Category</mat-label>
+      <mat-select name="category" [(ngModel)]="newCategory">
+        <mat-option *ngFor="let category of categories" [value]="category.code">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="newDescription" name="description"/>
+    </mat-form-field>
+    <button class="new-transaction" mat-raised-button (click)="addTransaction()" id="add">Add Transaction</button>
+  </form>
+
+  <button mat-raised-button (click)="deleteTransaction()" id="delete">Delete Transaction</button>
+
+  <table mat-table [dataSource]="transactions" class="mat-elevation-z8" matSort (matSortChange)="sortTransaction($event)">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- SELECT column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"></mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- DATE column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="element.date"style="width: 75px" />
+      <mat-datepicker #picker></mat-datepicker>
+      </td>
+    </ng-container>
+    <!-- AMOUNT column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> AMOUNT </th>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.amount" style="width: 60px" />
+      </td>
+    </ng-container>
+    <!-- ACCOUNT column -->
+    <ng-container matColumnDef="account">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT </th>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.account" style="width: 60px" />
+      </td>
+    </ng-container>
+    <!-- TYPE column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CATEGORY </th>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.category" style="width: 60px"/>
+      </td>
+    </ng-container>
+    <!-- DESCRIPTION column-->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+      <td mat-cell *matCellDef="let element">
+        <input matInput [(ngModel)]="element.description" style="width: 150px" />
+      </td>
+    </ng-container>
+  </table>
+</div>

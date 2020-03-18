@@ -1,0 +1,19 @@
+.account-manager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-label {
+    color: grey;
+}
+
+.new-account {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+table {
+    width: 50%;
+}

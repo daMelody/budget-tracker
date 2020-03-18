@@ -1,0 +1,15 @@
+.connect-bar {
+    background-color: darkred;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#name {
+    margin-left: 10px;
+}
+
+.navigate {
+    text-align: right;
+    margin-top: 5px;
+}
