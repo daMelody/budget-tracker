@@ -19,7 +19,6 @@ export class FileService {
             text = this.reader.result;
             let title: string = file.name;
             this.upload.clsParse(text.toString(), title);
-            //sessionStorage.setItem(title, JSON.stringify(title));
         }
         this.reader.readAsText(file);
     }
