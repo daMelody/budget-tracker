@@ -119,7 +119,7 @@ export class Upload {
                 }
                 cell = "";
                 index++;
-            } else if (ch === ' ') {
+            } else if (ch === ' ' && index <= 3) {
                 continue;
             } else {
                 cell += ch;
