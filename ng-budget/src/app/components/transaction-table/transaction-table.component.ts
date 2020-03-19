@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Transaction } from 'src/app/type-classes/transaction/transaction';
 import { MatDialog } from '@angular/material/dialog';
 import { NewTransactionDialogComponent } from '../new-transaction-dialog/new-transaction-dialog.component';
+import { NewTransferDialogComponent } from '../new-transfer-dialog/new-transfer-dialog.component';
+import { Transfer } from 'src/app/type-classes/transfer/transfer';
 
 @Component({
     selector: 'app-transaction-table',
@@ -33,6 +35,28 @@ export class TransactionTableComponent implements OnInit {
         this.isAllSelected()
             ? this.selection.clear()
             : this.transactions.forEach(row => this.selection.select(row));
+    }
+
+    newTransfer(): void {
+        const dialogRef = this.dialog.open(NewTransferDialogComponent, {
+            width: '40%',
+        });
+        dialogRef.afterClosed().subscribe(newTransfer => {
+            if (newTransfer != null) {
+                this.fillTransfer(newTransfer);
+            }
+        })
+    }
+
+    fillTransfer(newTransfer: Transfer): void {
+        newTransfer.to.date = newTransfer.from.date;
+        newTransfer.to.amount = Math.abs(newTransfer.from.amount);
+        newTransfer.to.category = newTransfer.from.category;
+        newTransfer.to.description = newTransfer.from.description;
+        this.transactions.push(newTransfer.from);
+        this.transactions.push(newTransfer.to);
+        this.table.renderRows();
+        sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
     }
 
     newTransaction(): void {

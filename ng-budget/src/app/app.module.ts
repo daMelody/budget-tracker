@@ -25,6 +25,7 @@ import { NewAccountDialogComponent } from './components/new-account-dialog/new-a
 import { MatDialogModule } from '@angular/material/dialog';
 import { NewCategoryDialogComponent } from './components/new-category-dialog/new-category-dialog.component';
 import { NewTransactionDialogComponent } from './components/new-transaction-dialog/new-transaction-dialog.component';
+import { NewTransferDialogComponent } from './components/new-transfer-dialog/new-transfer-dialog.component';
 
 const routes: Routes = [
     { path: 'accounts', component: AccountManagerComponent },
@@ -45,7 +46,8 @@ const routes: Routes = [
         LoadingDockComponent,
         NewAccountDialogComponent,
         NewCategoryDialogComponent,
-        NewTransactionDialogComponent
+        NewTransactionDialogComponent,
+        NewTransferDialogComponent
     ],
     entryComponents: [
         NewAccountDialogComponent,
