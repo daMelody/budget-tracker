@@ -1,7 +1,7 @@
 <div class="category-manager">
-  <div class="actions">
-    <button mat-raised-button (click)="newCategory()" id="add">Add Category</button>
-    <button mat-raised-button color="warn" (click)="deleteCategory()" id="delete">Delete Category</button>
+  <div>
+    <button mat-raised-button (click)="newCategory()" class="actions">Add Category</button>
+    <button mat-raised-button color="warn" (click)="deleteCategory()" class="actions">Delete Category</button>
   </div>
   <table mat-table [dataSource]="categories" class="mat-elevation-z8" matSort (matSortChange)="sortCategory($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

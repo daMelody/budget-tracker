@@ -1,7 +1,7 @@
 <div class="account-manager">
-  <div class="actions">
-    <button mat-raised-button (click)="newAccount()" id="delete">Add Account</button>
-    <button mat-raised-button color="warn" (click)="deleteAccount()" id="delete">Delete Account</button>
+  <div>
+    <button mat-raised-button (click)="newAccount()" class="actions">Add Account</button>
+    <button mat-raised-button color="warn" (click)="deleteAccount()" class="actions">Delete Account</button>
   </div>
   <table mat-table [dataSource]="accounts" class="mat-elevation-z8" matSort (matSortChange)="sortAccounts($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
