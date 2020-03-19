@@ -1,0 +1,12 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-form-field {
+    margin: 10px;
+}
+
+.actions {
+    float: right;
+}

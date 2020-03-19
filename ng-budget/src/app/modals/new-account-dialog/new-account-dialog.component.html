@@ -1,15 +1,17 @@
-<form>
-  <mat-form-field class="new-account">
-    <mat-label>Name</mat-label>
-    <input type="text" matInput [(ngModel)]="account.name" name="name" />
-  </mat-form-field>
-  <mat-form-field class="new-account">
-    <mat-label>Value</mat-label>
-    <input type="number" matInput [(ngModel)]="account.value" name="value" />
-  </mat-form-field>
-</form>
+<div class="account-dialog">
+  <form>
+    <mat-form-field class="new-account">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput [(ngModel)]="account.name" name="name" />
+    </mat-form-field>
+    <mat-form-field class="new-account">
+      <mat-label>Value</mat-label>
+      <input type="number" matInput [(ngModel)]="account.value" name="value" />
+    </mat-form-field>
+  </form>
 
-<div mat-dialog-actions>
-  <button mat-raised-button [mat-dialog-close]="account">Ok</button>
-  <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+  <div mat-dialog-actions class="actions">
+    <button mat-raised-button [mat-dialog-close]="account">Ok</button>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+  </div>
 </div>
