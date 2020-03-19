@@ -3,6 +3,8 @@ import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/type-classes/account/account';
+import { MatDialog } from '@angular/material/dialog';
+import { NewAccountDialogComponent } from '../new-account-dialog/new-account-dialog.component';
 
 @Component({
     selector: 'app-account-manager',
@@ -12,14 +14,12 @@ import { Account } from 'src/app/type-classes/account/account';
 export class AccountManagerComponent implements OnInit {
     displayedColumns: string[] = ["select", "number", "name", "value"];
     accounts: Array<Account>;
+
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
     @ViewChild(MatTable, { static: true }) table: MatTable<Account>;
 
-    newNumber: number;
-    newName: string;
-    newValue: number;
 
-    constructor(private router: Router) { }
+    constructor(public dialog: MatDialog, private router: Router) { }
     ngOnInit(): void {
         let acc = JSON.parse(sessionStorage.getItem("accounts"));
         this.accounts = acc != null ? acc : new Array<Account>();
@@ -39,6 +39,33 @@ export class AccountManagerComponent implements OnInit {
             this.accounts.forEach(row => this.selection.select(row));
     }
 
+    newAccount(): void {
+        const dialogRef = this.dialog.open(NewAccountDialogComponent, {
+            width: '40%',
+            data: { name: '', value: 0 }
+        });
+        dialogRef.afterClosed().subscribe(newAccount => {
+            if (newAccount !== null) {
+                this.addAccount(newAccount)
+            }
+        });
+    }
+
+    addAccount(newAccount: Account): void {
+        if (newAccount == null) { return; }
+        let answer: boolean = true;
+        if (newAccount.name === null) {
+            answer = confirm("Are you sure you want to add this Acount?");
+        }
+        if (answer) {
+            newAccount.number = this.genNumber();
+            newAccount.value = newAccount.value == null ? 0 : newAccount.value;
+        }
+        this.accounts.push(newAccount);
+        this.table.renderRows();
+        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
+    }
+
     genNumber(): number {
         let max: number = 0;
         if (this.accounts.length <= 0) return 0;
@@ -46,24 +73,6 @@ export class AccountManagerComponent implements OnInit {
             if (max < this.accounts[i].number) max = this.accounts[i].number;
         }
         return max + 1;
-    }
-
-    addAccount(): void {
-        let answer: boolean = true;
-        if (this.newName == null) {
-            answer = confirm("Are you sure you want to add this Acount?");
-        }
-        if (answer) {
-            let newAccount: Account = new Account();
-            newAccount.number = this.genNumber();
-            newAccount.name = this.newName;
-            newAccount.value = this.newValue == null ? 0 : this.newValue;
-            this.accounts.push(newAccount);
-            this.newName = null;
-            this.newValue = null;
-            this.table.renderRows();
-            sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
-        }
     }
 
     updateAccounts(): void {
@@ -74,8 +83,8 @@ export class AccountManagerComponent implements OnInit {
         if (confirm("Are you sure you want to delete this Category?")) {
             this.accounts = this.accounts.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
-            this.table.renderRows();
             sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
+            this.table.renderRows();
         }
     }
 

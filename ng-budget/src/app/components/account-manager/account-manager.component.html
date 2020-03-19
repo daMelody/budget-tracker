@@ -1,18 +1,8 @@
 <div class="account-manager">
-  <form>
-    <mat-form-field class="new-account">
-      <mat-label>Name</mat-label>
-      <input type="text" matInput [(ngModel)]="newName" name="name" />
-    </mat-form-field>
-    <mat-form-field class="new-account">
-      <mat-label>Value</mat-label>
-      <input type="number" matInput [(ngModel)]="newValue" name="value" />
-    </mat-form-field>
-    <button class="new-account" mat-raised-button (click)="addAccount()" id="add">Add Account</button>
-  </form>
-
-  <button mat-raised-button color="warn" (click)="deleteAccount()" id="delete">Delete Account</button>
-
+  <div class="actions">
+    <button mat-raised-button (click)="newAccount()" id="delete">Add Account</button>
+    <button mat-raised-button color="warn" (click)="deleteAccount()" id="delete">Delete Account</button>
+  </div>
   <table mat-table [dataSource]="accounts" class="mat-elevation-z8" matSort (matSortChange)="sortAccounts($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>

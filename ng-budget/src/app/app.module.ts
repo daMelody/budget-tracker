@@ -21,6 +21,8 @@ import { TransactionTableComponent } from "./components/transaction-table/transa
 import { AccountManagerComponent } from './components/account-manager/account-manager.component';
 import { CategoryManagerComponent } from './components/category-manager/category-manager.component';
 import { LoadingDockComponent } from './components/loading-dock/loading-dock.component';
+import { NewAccountDialogComponent } from './components/new-account-dialog/new-account-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
     { path: 'accounts', component: AccountManagerComponent },
@@ -38,7 +40,11 @@ const routes: Routes = [
         TransactionTableComponent,
         AccountManagerComponent,
         CategoryManagerComponent,
-        LoadingDockComponent
+        LoadingDockComponent,
+        NewAccountDialogComponent
+    ],
+    entryComponents: [
+        NewAccountDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -54,7 +60,8 @@ const routes: Routes = [
         MatDatepickerModule,
         MatNativeDateModule,
         MatMenuModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDialogModule
     ],
     providers: [],
     bootstrap: [AppComponent]
