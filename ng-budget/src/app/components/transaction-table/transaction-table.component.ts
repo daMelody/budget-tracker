@@ -1,13 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { Transaction } from 'src/app/type-classes/transaction/transaction';
-import { Category } from 'src/app/type-classes/category/category';
-import { Account } from 'src/app/type-classes/account/account';
+import { MatDialog } from '@angular/material/dialog';
+import { NewTransactionDialogComponent } from '../new-transaction-dialog/new-transaction-dialog.component';
 
 @Component({
     selector: 'app-transaction-table',
@@ -20,21 +17,10 @@ export class TransactionTableComponent implements OnInit {
     selection: SelectionModel<Transaction> = new SelectionModel<Transaction>(true, []);
     @ViewChild(MatTable, { static: true }) table: MatTable<Transaction>;
 
-    accounts: Array<Account> = new Array<Account>();
-    categories: Array<Category> = new Array<Category>();
-
-    newDate: Date;
-    newAmount: number;
-    newAccount: number;
-    newCategory: string;
-    newDescription: string;
-
-    constructor(private router: Router) { }
+    constructor(public dialog: MatDialog, private router: Router) { }
     ngOnInit() {
         let sact = JSON.parse(sessionStorage.getItem("transactions"))
         this.transactions = sact != null ? sact : new Array<Transaction>();
-        this.accounts = JSON.parse(sessionStorage.getItem("accounts"));
-        this.categories = JSON.parse(sessionStorage.getItem("categories"));
     }
 
     isAllSelected(): Boolean {
@@ -49,24 +35,35 @@ export class TransactionTableComponent implements OnInit {
             : this.transactions.forEach(row => this.selection.select(row));
     }
 
-    addTransaction(): void {
+    newTransaction(): void {
+        const dialogRef = this.dialog.open(NewTransactionDialogComponent, {
+            width: '40%',
+            data: {
+                date: null,
+                amount: null,
+                account: null,
+                category: null,
+                description: null
+            }
+        });
+        dialogRef.afterClosed().subscribe(newTransaction => {
+            if (newTransaction != null) {
+                this.addTransaction(newTransaction);
+            }
+        })
+    }
+
+    addTransaction(newTransaction: Transaction): void {
         let answer: boolean = true;
-        if (this.newDate == null || this.newAmount == null || this.newAccount == null || this.newCategory == null || this.newDescription == null) {
+        if (newTransaction.date == null ||
+            newTransaction.amount == null ||
+            newTransaction.account == null ||
+            newTransaction.category == null ||
+            newTransaction.description == null) {
             answer = confirm("Are you sure you want to add this Transaction?");
         }
         if (answer) {
-            let newTransaction = new Transaction();
-            newTransaction.date = this.newDate;
-            newTransaction.amount = this.newAmount;
-            newTransaction.account = this.newAccount;
-            newTransaction.category = this.newCategory;
-            newTransaction.description = this.newDescription;
             this.transactions.push(newTransaction);
-            this.newDate = null;
-            this.newAmount = null;
-            this.newAccount = null;
-            this.newCategory = null;
-            this.newDescription = null;
             this.table.renderRows();
             sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
         }

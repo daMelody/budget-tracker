@@ -63,10 +63,10 @@ export class CategoryManagerComponent implements OnInit {
         }
         if (answer) {
             newCategory.actual = 0;
+            this.categories.push(newCategory);
+            this.table.renderRows();
+            sessionStorage.setItem("categories", JSON.stringify(this.categories));
         }
-        this.categories.push(newCategory);
-        this.table.renderRows();
-        sessionStorage.setItem("categories", JSON.stringify(this.categories));
     }
 
     updateCategories(): void {

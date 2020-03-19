@@ -59,10 +59,10 @@ export class AccountManagerComponent implements OnInit {
         if (answer) {
             newAccount.number = this.genNumber();
             newAccount.value = newAccount.value == null ? 0 : newAccount.value;
+            this.accounts.push(newAccount);
+            this.table.renderRows();
+            sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
         }
-        this.accounts.push(newAccount);
-        this.table.renderRows();
-        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
     }
 
     genNumber(): number {
