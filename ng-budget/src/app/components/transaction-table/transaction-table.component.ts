@@ -72,6 +72,10 @@ export class TransactionTableComponent implements OnInit {
         }
     }
 
+    updateTransactions(): void {
+        sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
+    }
+
     deleteTransaction(): void {
         if (confirm("Are you sure you want to delete this Category?")) {
             this.transactions = this.transactions.filter(elt => !this.selection.selected.includes(elt));

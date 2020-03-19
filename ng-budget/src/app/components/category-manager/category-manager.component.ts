@@ -59,6 +59,10 @@ export class CategoryManagerComponent implements OnInit {
         }
     }
 
+    updateCategories(): void {
+        sessionStorage.setItem("categories", JSON.stringify(this.categories));
+    }
+
     deleteCategory(): void {
         if (confirm("Are you sure you want to delete this Category?")) {
             this.categories = this.categories.filter(elt => !this.selection.selected.includes(elt));

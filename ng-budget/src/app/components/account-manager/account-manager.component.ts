@@ -66,6 +66,10 @@ export class AccountManagerComponent implements OnInit {
         }
     }
 
+    updateAccounts(): void {
+        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
+    }
+
     deleteAccount(): void {
         if (confirm("Are you sure you want to delete this Category?")) {
             this.accounts = this.accounts.filter(elt => !this.selection.selected.includes(elt));
