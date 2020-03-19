@@ -45,14 +45,13 @@ export class AccountManagerComponent implements OnInit {
             data: { name: '', value: 0 }
         });
         dialogRef.afterClosed().subscribe(newAccount => {
-            if (newAccount !== null) {
+            if (newAccount != null) {
                 this.addAccount(newAccount)
             }
         });
     }
 
     addAccount(newAccount: Account): void {
-        if (newAccount == null) { return; }
         let answer: boolean = true;
         if (newAccount.name === null) {
             answer = confirm("Are you sure you want to add this Acount?");

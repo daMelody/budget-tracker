@@ -1,22 +1,8 @@
 <div class="category-manager">
-  <form>
-    <mat-form-field class="new-category">
-      <mat-label>Name</mat-label>
-      <input type="text" matInput [(ngModel)]="newName" name="name" />
-    </mat-form-field>
-    <mat-form-field class="new-category">
-      <mat-label>Code</mat-label>
-      <input type="text" matInput [(ngModel)]="newCode" name="code" />
-    </mat-form-field>
-    <mat-form-field class="new-category">
-      <mat-label>Expected</mat-label>
-      <input type="number" matInput [(ngModel)]="newExpected" name="expected" />
-    </mat-form-field>
-    <button class="new-category" mat-raised-button (click)="addCategory()" id="add">Add Category</button>
-  </form>
-
-  <button mat-raised-button color="warn" (click)="deleteCategory()" id="delete">Delete Category</button>
-
+  <div class="actions">
+    <button mat-raised-button (click)="newCategory()" id="add">Add Category</button>
+    <button mat-raised-button color="warn" (click)="deleteCategory()" id="delete">Delete Category</button>
+  </div>
   <table mat-table [dataSource]="categories" class="mat-elevation-z8" matSort (matSortChange)="sortCategory($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>

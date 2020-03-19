@@ -3,6 +3,8 @@ import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/type-classes/category/category';
+import { NewCategoryDialogComponent } from '../new-category-dialog/new-category-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-category-manager',
@@ -19,7 +21,7 @@ export class CategoryManagerComponent implements OnInit {
     newName: string;
     newExpected: number;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, public dialog: MatDialog) { }
     ngOnInit(): void {
         let cat = JSON.parse(sessionStorage.getItem("categories"))
         this.categories = cat != null ? cat : new Array<Category>();
@@ -39,24 +41,32 @@ export class CategoryManagerComponent implements OnInit {
             this.categories.forEach(row => this.selection.select(row));
     }
 
-    addCategory(): void {
+    newCategory(): void {
+        const dialogRef = this.dialog.open(NewCategoryDialogComponent, {
+            width: '40%',
+            data: { name: '', code: '', expected: 0, }
+        });
+        dialogRef.afterClosed().subscribe(newCategory => {
+            if (newCategory != null) {
+                this.addCategory(newCategory)
+            }
+        });
+    }
+
+    addCategory(newCategory: Category): void {
         let answer: boolean = true;
-        if (this.newCode == null || this.newName == null) {
+        if (newCategory.name == null ||
+            newCategory.code == null ||
+            newCategory.expected == null
+        ) {
             answer = confirm("Are you sure you want to add this Category?");
         }
         if (answer) {
-            let newCategory: Category = new Category();
-            newCategory.code = this.newCode
-            newCategory.name = this.newName;
-            newCategory.expected = this.newExpected == null ? 0 : this.newExpected;
             newCategory.actual = 0;
-            this.categories.push(newCategory);
-            this.newName = null;
-            this.newCode = null;
-            this.newExpected = null
-            this.table.renderRows();
-            sessionStorage.setItem("categories", JSON.stringify(this.categories));
         }
+        this.categories.push(newCategory);
+        this.table.renderRows();
+        sessionStorage.setItem("categories", JSON.stringify(this.categories));
     }
 
     updateCategories(): void {
