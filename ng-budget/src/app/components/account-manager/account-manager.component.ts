@@ -4,7 +4,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/type-classes/account/account';
 import { MatDialog } from '@angular/material/dialog';
-import { NewAccountDialogComponent } from '../new-account-dialog/new-account-dialog.component';
+import { NewAccountDialogComponent } from 'src/app/modals/new-account-dialog/new-account-dialog.component';
+
 
 @Component({
     selector: 'app-account-manager',

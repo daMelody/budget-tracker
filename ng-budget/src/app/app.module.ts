@@ -13,6 +13,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from "./app.component";
 import { ConnectBarComponent } from "./components/connect-bar/connect-bar.component";
@@ -21,11 +22,10 @@ import { TransactionTableComponent } from "./components/transaction-table/transa
 import { AccountManagerComponent } from './components/account-manager/account-manager.component';
 import { CategoryManagerComponent } from './components/category-manager/category-manager.component';
 import { LoadingDockComponent } from './components/loading-dock/loading-dock.component';
-import { NewAccountDialogComponent } from './components/new-account-dialog/new-account-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { NewCategoryDialogComponent } from './components/new-category-dialog/new-category-dialog.component';
-import { NewTransactionDialogComponent } from './components/new-transaction-dialog/new-transaction-dialog.component';
-import { NewTransferDialogComponent } from './components/new-transfer-dialog/new-transfer-dialog.component';
+import { NewAccountDialogComponent } from './modals/new-account-dialog/new-account-dialog.component';
+import { NewCategoryDialogComponent } from './modals/new-category-dialog/new-category-dialog.component';
+import { NewTransactionDialogComponent } from './modals/new-transaction-dialog/new-transaction-dialog.component';
+import { NewTransferDialogComponent } from './modals/new-transfer-dialog/new-transfer-dialog.component';
 
 const routes: Routes = [
     { path: 'accounts', component: AccountManagerComponent },
@@ -48,9 +48,6 @@ const routes: Routes = [
         NewCategoryDialogComponent,
         NewTransactionDialogComponent,
         NewTransferDialogComponent
-    ],
-    entryComponents: [
-        NewAccountDialogComponent,
     ],
     imports: [
         BrowserModule,

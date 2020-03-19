@@ -3,8 +3,8 @@ import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/type-classes/category/category';
-import { NewCategoryDialogComponent } from '../new-category-dialog/new-category-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NewCategoryDialogComponent } from 'src/app/modals/new-category-dialog/new-category-dialog.component';
 
 @Component({
     selector: 'app-category-manager',

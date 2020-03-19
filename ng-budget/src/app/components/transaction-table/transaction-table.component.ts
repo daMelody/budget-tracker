@@ -4,9 +4,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { Transaction } from 'src/app/type-classes/transaction/transaction';
 import { MatDialog } from '@angular/material/dialog';
-import { NewTransactionDialogComponent } from '../new-transaction-dialog/new-transaction-dialog.component';
-import { NewTransferDialogComponent } from '../new-transfer-dialog/new-transfer-dialog.component';
 import { Transfer } from 'src/app/type-classes/transfer/transfer';
+import { NewTransferDialogComponent } from 'src/app/modals/new-transfer-dialog/new-transfer-dialog.component';
+import { NewTransactionDialogComponent } from 'src/app/modals/new-transaction-dialog/new-transaction-dialog.component';
 
 @Component({
     selector: 'app-transaction-table',
