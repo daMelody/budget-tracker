@@ -25,13 +25,21 @@ export class OverviewComponent implements OnInit {
     @ViewChild(MatTable, { static: true }) categoryTable: MatTable<Category>;
 
     constructor() { }
-    ngOnInit() {
+    ngOnInit(): void {
         this.accounts = JSON.parse(sessionStorage.getItem("accounts"));
         this.accounts != null ? this.accounts.forEach(acc => this.accountMap.set(acc.name, acc)) : null;
         this.categories = JSON.parse(sessionStorage.getItem("categories"));
         this.categories != null ? this.categories.forEach(cat => this.categoryMap.set(cat.name, cat)) : null;
         this.transactions = JSON.parse(sessionStorage.getItem("transactions"));
-        if (this.transactions != null) this.calculate();
+        if (this.transactions != null) {
+            this.resetAccumulation();
+            this.calculate();
+        }
+    }
+
+    resetAccumulation(): void {
+        this.accounts.forEach(acc => acc.value = 0);
+        this.categories.forEach(cat => cat.actual = 0);
     }
 
     calculate(): void {
