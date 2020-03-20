@@ -138,7 +138,13 @@ export class TransactionTableComponent implements OnInit {
     }
 
     accountSort(a: Transaction, b: Transaction): number {
-        return a.account - b.account;
+        if (a.account < b.account) {
+            return -1;
+        } else if (a.account > b.account) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     categorySort(a: Transaction, b: Transaction): number {

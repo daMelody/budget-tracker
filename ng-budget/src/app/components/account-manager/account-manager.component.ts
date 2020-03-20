@@ -12,7 +12,7 @@ import { NewAccountDialogComponent } from 'src/app/modals/new-account-dialog/new
     styleUrls: ['./account-manager.component.css']
 })
 export class AccountManagerComponent implements OnInit {
-    displayedColumns: string[] = ["select", "number", "name", "value"];
+    displayedColumns: string[] = ["select", "name", "value"];
     accounts: Array<Account>;
 
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
@@ -57,21 +57,11 @@ export class AccountManagerComponent implements OnInit {
             answer = confirm("Are you sure you want to add this Acount?");
         }
         if (answer) {
-            newAccount.number = this.genNumber();
             newAccount.value = newAccount.value == null ? 0 : newAccount.value;
             this.accounts.push(newAccount);
             this.table.renderRows();
             sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
         }
-    }
-
-    genNumber(): number {
-        let max: number = 0;
-        if (this.accounts.length <= 0) return 0;
-        for (let i = 0; i < this.accounts.length; i++) {
-            if (max < this.accounts[i].number) max = this.accounts[i].number;
-        }
-        return max + 1;
     }
 
     updateAccounts(): void {
@@ -89,8 +79,6 @@ export class AccountManagerComponent implements OnInit {
 
     sortAccounts(event): void {
         switch (event.active) {
-            case "number": this.accounts = this.accounts.sort(this.numberSort);
-                break;
             case "name": this.accounts = this.accounts.sort(this.nameSort);
                 break;
             case "value": this.accounts = this.accounts.sort(this.valueSort);
@@ -104,10 +92,6 @@ export class AccountManagerComponent implements OnInit {
     }
 
     /* SORTING methods for each sortable Account field */
-
-    numberSort(a: Account, b: Account): number {
-        return a.number - b.number;
-    }
 
     nameSort(a: Account, b: Account): number {
         if (a.name < b.name) {

@@ -13,7 +13,6 @@ export class Download {
             let cls: string = ""
             for (let i: number = 0; i < accounts.length; i++) {
                 let acc: Account = accounts[i];
-                cls += acc.number + ",";
                 cls += acc.name + ",";
                 cls += acc.value + "\n";
             }
@@ -26,7 +25,6 @@ export class Download {
             let cls: string = ""
             for (let i: number = 0; i < categories.length; i++) {
                 let cat: Category = categories[i];
-                cls += cat.code + ",";
                 cls += cat.name + ",";
                 cls += cat.expected + ",";
                 cls += cat.actual + "\n";

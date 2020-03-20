@@ -11,7 +11,7 @@ import { NewCategoryDialogComponent } from 'src/app/modals/new-category-dialog/n
     styleUrls: ['./category-manager.component.css']
 })
 export class CategoryManagerComponent implements OnInit {
-    displayedColumns: string[] = ["select", "code", "name", "expected", "actual"];
+    displayedColumns: string[] = ["select", "name", "expected", "actual"];
     categories: Array<Category>;
     selection: SelectionModel<Category> = new SelectionModel<Category>(true, []);
     @ViewChild(MatTable, { static: true }) table: MatTable<Category>;
@@ -43,7 +43,7 @@ export class CategoryManagerComponent implements OnInit {
     newCategory(): void {
         const dialogRef = this.dialog.open(NewCategoryDialogComponent, {
             width: '40%',
-            data: { name: '', code: '', expected: 0, }
+            data: { name: '', expected: 0, }
         });
         dialogRef.afterClosed().subscribe(newCategory => {
             if (newCategory != null) {
@@ -55,7 +55,6 @@ export class CategoryManagerComponent implements OnInit {
     addCategory(newCategory: Category): void {
         let answer: boolean = true;
         if (newCategory.name == null ||
-            newCategory.code == null ||
             newCategory.expected == null
         ) {
             answer = confirm("Are you sure you want to add this Category?");
@@ -83,8 +82,6 @@ export class CategoryManagerComponent implements OnInit {
 
     sortCategory(event): void {
         switch (event.active) {
-            case "code": this.categories = this.categories.sort(this.codeSort);
-                break;
             case "name": this.categories = this.categories.sort(this.nameSort);
                 break;
             case "expected": this.categories = this.categories.sort(this.expectedSort);
@@ -99,16 +96,6 @@ export class CategoryManagerComponent implements OnInit {
     }
 
     /* SORTING methods for each sortable Category field */
-
-    codeSort(a: Category, b: Category): number {
-        if (a.code < b.code) {
-            return -1;
-        } else if (a.code > b.code) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
 
     nameSort(a: Category, b: Category): number {
         if (a.name < b.name) {

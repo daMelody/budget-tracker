@@ -13,7 +13,7 @@
     <mat-form-field class="new-transaction">
       <mat-label>Account</mat-label>
       <mat-select name="account" [(ngModel)]="transaction.account">
-        <mat-option *ngFor="let account of accounts" [value]="account.number">
+        <mat-option *ngFor="let account of accounts" [value]="account.name">
           {{ account.name }}
         </mat-option>
       </mat-select>
@@ -21,7 +21,7 @@
     <mat-form-field class="new-transaction">
       <mat-label>Category</mat-label>
       <mat-select name="category" [(ngModel)]="transaction.category">
-        <mat-option *ngFor="let category of categories" [value]="category.code">
+        <mat-option *ngFor="let category of categories" [value]="category.name">
           {{ category.name }}
         </mat-option>
       </mat-select>
