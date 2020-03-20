@@ -28,7 +28,7 @@
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> VALUE </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.value" (change)="updateAccounts()" style="width: 60px" />
+        <input matInput type="number" [(ngModel)]="element.value" (change)="updateAccounts()" style="width: 60px" />
       </td>
     </ng-container>
   </table>

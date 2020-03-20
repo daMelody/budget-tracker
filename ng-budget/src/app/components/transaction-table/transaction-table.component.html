@@ -33,7 +33,8 @@
     <ng-container matColumnDef="amount">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> AMOUNT </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.amount" (change)="updateTransactions()" style="width: 60px" />
+        <input matInput type="number" [(ngModel)]="element.amount" (change)="updateTransactions()"
+          style="width: 60px" />
       </td>
     </ng-container>
     <!-- ACCOUNT column -->
