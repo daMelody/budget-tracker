@@ -1,22 +1,8 @@
 <div class="category-manager">
-  <form>
-    <mat-form-field class="new-category">
-      <mat-label>Name</mat-label>
-      <input type="text" matInput [(ngModel)]="newName" name="name"/>
-    </mat-form-field>
-    <mat-form-field class="new-category">
-      <mat-label>Code</mat-label>
-      <input type="text" matInput [(ngModel)]="newCode" name="code" />
-    </mat-form-field>
-    <mat-form-field class="new-category">
-      <mat-label>Expected</mat-label>
-      <input type="number" matInput [(ngModel)]="newExpected" name="expected" />
-    </mat-form-field>
-    <button class="new-category" mat-raised-button (click)="addCategory()" id="add">Add Category</button>
-  </form>
-
-  <button mat-raised-button (click)="deleteCategory()" id="delete">Delete Category</button>
-
+  <div>
+    <button mat-raised-button (click)="newCategory()" class="actions">Add Category</button>
+    <button mat-raised-button color="warn" (click)="deleteCategory()" class="actions">Delete Category</button>
+  </div>
   <table mat-table [dataSource]="categories" class="mat-elevation-z8" matSort (matSortChange)="sortCategory($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
@@ -31,32 +17,25 @@
           [checked]="selection.isSelected(row)"></mat-checkbox>
       </td>
     </ng-container>
-    <!-- CODE -->
-    <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> CODE </th>
-      <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.code" style="width: 60px" />
-      </td>
-    </ng-container>
     <!-- NAME -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.name" style="width: 100px" />
+        <input matInput [(ngModel)]="element.name" (change)="updateCategories()" style="width: 100px" />
       </td>
     </ng-container>
     <!-- EXPECTED -->
     <ng-container matColumnDef="expected">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> EXPECTED </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.expected" style="width: 75px" />
+        <input matInput [(ngModel)]="element.expected" (change)="updateCategories()" style="width: 75px" />
       </td>
     </ng-container>
     <!-- ACTUAL -->
     <ng-container matColumnDef="actual">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTUAL </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.actual" style="width: 75px" />
+        <input matInput [(ngModel)]="element.actual" (change)="updateCategories()" style="width: 75px" />
       </td>
     </ng-container>
   </table>

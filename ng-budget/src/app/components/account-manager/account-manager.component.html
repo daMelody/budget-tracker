@@ -1,18 +1,8 @@
 <div class="account-manager">
-  <form>
-    <mat-form-field class="new-account">
-      <mat-label>Name</mat-label>
-      <input type="text" matInput [(ngModel)]="newName" name="name"/>
-    </mat-form-field>
-    <mat-form-field class="new-account">
-      <mat-label>Value</mat-label>
-      <input type="number" matInput [(ngModel)]="newValue" name="value" />
-    </mat-form-field>
-    <button class="new-account" mat-raised-button (click)="addAccount()" id="add">Add Account</button>
-  </form>
-
-  <button mat-raised-button (click)="deleteAccount()" id="delete">Delete Account</button>
-
+  <div>
+    <button mat-raised-button (click)="newAccount()" class="actions">Add Account</button>
+    <button mat-raised-button color="warn" (click)="deleteAccount()" class="actions">Delete Account</button>
+  </div>
   <table mat-table [dataSource]="accounts" class="mat-elevation-z8" matSort (matSortChange)="sortAccounts($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
@@ -27,24 +17,18 @@
           [checked]="selection.isSelected(row)"></mat-checkbox>
       </td>
     </ng-container>
-    <!-- NUMBER -->
-    <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> NUMBER </th>
-      <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.number" style="width: 60px" /> </td>
-    </ng-container>
     <!-- NAME -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.name" style="width: 100px" />
+        <input matInput [(ngModel)]="element.name" (change)="updateAccounts()" style="width: 100px" />
       </td>
     </ng-container>
     <!-- VALUE -->
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> VALUE </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.value" style="width: 60px" />
+        <input matInput [(ngModel)]="element.value" (change)="updateAccounts()" style="width: 60px" />
       </td>
     </ng-container>
   </table>

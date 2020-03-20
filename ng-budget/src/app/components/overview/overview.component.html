@@ -3,11 +3,6 @@
     <table mat-table id="categories" [dataSource]="categories" name="categoryTable">
       <tr mat-header-row *matHeaderRowDef="categoryColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: categoryColumns;"></tr>
-      <!-- CODE -->
-      <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef> CODE </th>
-        <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
-      </ng-container>
       <!-- NAME -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> NAME </th>
@@ -29,11 +24,6 @@
     <table mat-table id="accounts" [dataSource]="accounts" name="accountTable">
       <tr mat-header-row *matHeaderRowDef="accountColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: accountColumns;"></tr>
-      <!-- NUMBER -->
-      <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef> NUMBER </th>
-        <td mat-cell *matCellDef="let element"> {{ element.number }} </td>
-      </ng-container>
       <!-- NAME -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> NAME </th>

@@ -1,9 +1,10 @@
 .overview {
+    margin: 20px;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
 }
 
 table {
-    width: 300px;
+    width: 450px;
 }

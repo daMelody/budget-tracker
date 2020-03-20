@@ -5,13 +5,8 @@
     align-items: center;
 }
 
-mat-label {
-    color: grey;
-}
-
-.new-category {
-    margin-left: 5px;
-    margin-right: 5px;
+.actions {
+    margin: 15px;
 }
 
 table {

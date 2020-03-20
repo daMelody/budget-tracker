@@ -1,0 +1,39 @@
+<div class="transaction-dialog">
+  <form>
+    <mat-form-field class="new-transaction">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="transaction.date" name="date" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" [(ngModel)]="transaction.amount" name="amount" />
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Account</mat-label>
+      <mat-select name="account" [(ngModel)]="transaction.account">
+        <mat-option *ngFor="let account of accounts" [value]="account.name">
+          {{ account.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Category</mat-label>
+      <mat-select name="category" [(ngModel)]="transaction.category">
+        <mat-option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="new-transaction">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="transaction.description" name="description" />
+    </mat-form-field>
+  </form>
+
+  <div mat-dialog-actions class="actions">
+    <button mat-raised-button [mat-dialog-close]="transaction">Ok</button>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+  </div>
+</div>

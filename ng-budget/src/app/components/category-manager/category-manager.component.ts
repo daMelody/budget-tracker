@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Router } from '@angular/router';
 import { Category } from 'src/app/type-classes/category/category';
+import { MatDialog } from '@angular/material/dialog';
+import { NewCategoryDialogComponent } from 'src/app/modals/new-category-dialog/new-category-dialog.component';
 
 @Component({
     selector: 'app-category-manager',
@@ -10,7 +11,7 @@ import { Category } from 'src/app/type-classes/category/category';
     styleUrls: ['./category-manager.component.css']
 })
 export class CategoryManagerComponent implements OnInit {
-    displayedColumns: string[] = ["select", "code", "name", "expected", "actual"];
+    displayedColumns: string[] = ["select", "name", "expected", "actual"];
     categories: Array<Category>;
     selection: SelectionModel<Category> = new SelectionModel<Category>(true, []);
     @ViewChild(MatTable, { static: true }) table: MatTable<Category>;
@@ -19,7 +20,7 @@ export class CategoryManagerComponent implements OnInit {
     newName: string;
     newExpected: number;
 
-    constructor(private router: Router) { }
+    constructor(public dialog: MatDialog) { }
     ngOnInit(): void {
         let cat = JSON.parse(sessionStorage.getItem("categories"))
         this.categories = cat != null ? cat : new Array<Category>();
@@ -39,24 +40,35 @@ export class CategoryManagerComponent implements OnInit {
             this.categories.forEach(row => this.selection.select(row));
     }
 
-    addCategory(): void {
+    newCategory(): void {
+        const dialogRef = this.dialog.open(NewCategoryDialogComponent, {
+            width: '40%',
+            data: { name: '', expected: 0, }
+        });
+        dialogRef.afterClosed().subscribe(newCategory => {
+            if (newCategory != null) {
+                this.addCategory(newCategory)
+            }
+        });
+    }
+
+    addCategory(newCategory: Category): void {
         let answer: boolean = true;
-        if (this.newCode == null || this.newName == null) {
+        if (newCategory.name == null ||
+            newCategory.expected == null
+        ) {
             answer = confirm("Are you sure you want to add this Category?");
         }
         if (answer) {
-            let newCategory: Category = new Category();
-            newCategory.code = this.newCode
-            newCategory.name = this.newName;
-            newCategory.expected = this.newExpected == null ? 0 : this.newExpected;
             newCategory.actual = 0;
             this.categories.push(newCategory);
-            this.newName = null;
-            this.newCode = null;
-            this.newExpected = null
             this.table.renderRows();
             sessionStorage.setItem("categories", JSON.stringify(this.categories));
         }
+    }
+
+    updateCategories(): void {
+        sessionStorage.setItem("categories", JSON.stringify(this.categories));
     }
 
     deleteCategory(): void {
@@ -70,8 +82,6 @@ export class CategoryManagerComponent implements OnInit {
 
     sortCategory(event): void {
         switch (event.active) {
-            case "code": this.categories = this.categories.sort(this.codeSort);
-                break;
             case "name": this.categories = this.categories.sort(this.nameSort);
                 break;
             case "expected": this.categories = this.categories.sort(this.expectedSort);
@@ -86,16 +96,6 @@ export class CategoryManagerComponent implements OnInit {
     }
 
     /* SORTING methods for each sortable Category field */
-
-    codeSort(a: Category, b: Category): number {
-        if (a.code < b.code) {
-            return -1;
-        } else if (a.code > b.code) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
 
     nameSort(a: Category, b: Category): number {
         if (a.name < b.name) {

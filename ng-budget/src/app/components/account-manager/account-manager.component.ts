@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Router } from '@angular/router';
 import { Account } from 'src/app/type-classes/account/account';
+import { MatDialog } from '@angular/material/dialog';
+import { NewAccountDialogComponent } from 'src/app/modals/new-account-dialog/new-account-dialog.component';
+
 
 @Component({
     selector: 'app-account-manager',
@@ -10,16 +12,14 @@ import { Account } from 'src/app/type-classes/account/account';
     styleUrls: ['./account-manager.component.css']
 })
 export class AccountManagerComponent implements OnInit {
-    displayedColumns: string[] = ["select", "number", "name", "value"];
+    displayedColumns: string[] = ["select", "name", "value"];
     accounts: Array<Account>;
+
     selection: SelectionModel<Account> = new SelectionModel<Account>(true, []);
     @ViewChild(MatTable, { static: true }) table: MatTable<Account>;
 
-    newNumber: number;
-    newName: string;
-    newValue: number;
 
-    constructor(private router: Router) { }
+    constructor(public dialog: MatDialog) { }
     ngOnInit(): void {
         let acc = JSON.parse(sessionStorage.getItem("accounts"));
         this.accounts = acc != null ? acc : new Array<Account>();
@@ -39,46 +39,46 @@ export class AccountManagerComponent implements OnInit {
             this.accounts.forEach(row => this.selection.select(row));
     }
 
-    genNumber(): number {
-        let max: number = 0;
-        if (this.accounts.length <= 0) return 0;
-        for (let i = 0; i < this.accounts.length; i++) {
-            if (max < this.accounts[i].number) max = this.accounts[i].number;
-        }
-        return max + 1;
+    newAccount(): void {
+        const dialogRef = this.dialog.open(NewAccountDialogComponent, {
+            width: '40%',
+            data: { name: '', value: 0 }
+        });
+        dialogRef.afterClosed().subscribe(newAccount => {
+            if (newAccount != null) {
+                this.addAccount(newAccount)
+            }
+        });
     }
 
-    addAccount(): void {
+    addAccount(newAccount: Account): void {
         let answer: boolean = true;
-        if (this.newName == null) {
+        if (newAccount.name === null) {
             answer = confirm("Are you sure you want to add this Acount?");
         }
         if (answer) {
-            let newAccount: Account = new Account();
-            newAccount.number = this.genNumber();
-            newAccount.name = this.newName;
-            newAccount.value = this.newValue == null ? 0 : this.newValue;
+            newAccount.value = newAccount.value == null ? 0 : newAccount.value;
             this.accounts.push(newAccount);
-            this.newName = null;
-            this.newValue = null;
             this.table.renderRows();
             sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
         }
+    }
+
+    updateAccounts(): void {
+        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
     }
 
     deleteAccount(): void {
         if (confirm("Are you sure you want to delete this Category?")) {
             this.accounts = this.accounts.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
-            this.table.renderRows();
             sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
+            this.table.renderRows();
         }
     }
 
     sortAccounts(event): void {
         switch (event.active) {
-            case "number": this.accounts = this.accounts.sort(this.numberSort);
-                break;
             case "name": this.accounts = this.accounts.sort(this.nameSort);
                 break;
             case "value": this.accounts = this.accounts.sort(this.valueSort);
@@ -92,10 +92,6 @@ export class AccountManagerComponent implements OnInit {
     }
 
     /* SORTING methods for each sortable Account field */
-
-    numberSort(a: Account, b: Account): number {
-        return a.number - b.number;
-    }
 
     nameSort(a: Account, b: Account): number {
         if (a.name < b.name) {

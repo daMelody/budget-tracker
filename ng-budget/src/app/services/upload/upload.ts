@@ -42,12 +42,10 @@ export class Upload {
                 index = 0;
                 cell = "";
             } else if (ch === ',') {
-                switch (index) {
-                    case 0: account.number = Number.parseInt(cell);
-                        break;
-                    case 1: account.name = cell;
-                        break;
-                    default: console.log("bad index");
+                if (index == 0) {
+                    account.name = cell;
+                } else {
+                    console.log("bad index");
                 }
                 cell = "";
                 index++;
@@ -74,11 +72,9 @@ export class Upload {
                 cell = "";
             } else if (ch === ',') {
                 switch (index) {
-                    case 0: category.code = cell;
+                    case 0: category.name = cell;
                         break;
-                    case 1: category.name = cell;
-                        break;
-                    case 2: category.expected = Number.parseFloat(cell);
+                    case 1: category.expected = Number.parseFloat(cell);
                         break;
                     default: console.log("bad index");
                 }
@@ -111,7 +107,7 @@ export class Upload {
                         break;
                     case 1: transaction.amount = Number.parseFloat(cell);
                         break;
-                    case 2: transaction.account = Number.parseInt(cell);
+                    case 2: transaction.account = cell;
                         break;
                     case 3: transaction.category = cell;
                         break;
