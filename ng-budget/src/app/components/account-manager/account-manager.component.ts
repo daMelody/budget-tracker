@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Router } from '@angular/router';
 import { Account } from 'src/app/type-classes/account/account';
 import { MatDialog } from '@angular/material/dialog';
 import { NewAccountDialogComponent } from 'src/app/modals/new-account-dialog/new-account-dialog.component';
@@ -20,7 +19,7 @@ export class AccountManagerComponent implements OnInit {
     @ViewChild(MatTable, { static: true }) table: MatTable<Account>;
 
 
-    constructor(public dialog: MatDialog, private router: Router) { }
+    constructor(public dialog: MatDialog) { }
     ngOnInit(): void {
         let acc = JSON.parse(sessionStorage.getItem("accounts"));
         this.accounts = acc != null ? acc : new Array<Account>();

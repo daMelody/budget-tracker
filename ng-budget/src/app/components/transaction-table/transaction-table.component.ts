@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Router } from '@angular/router';
 import { Transaction } from 'src/app/type-classes/transaction/transaction';
 import { MatDialog } from '@angular/material/dialog';
 import { Transfer } from 'src/app/type-classes/transfer/transfer';
@@ -19,7 +18,7 @@ export class TransactionTableComponent implements OnInit {
     selection: SelectionModel<Transaction> = new SelectionModel<Transaction>(true, []);
     @ViewChild(MatTable, { static: true }) table: MatTable<Transaction>;
 
-    constructor(public dialog: MatDialog, private router: Router) { }
+    constructor(public dialog: MatDialog) { }
     ngOnInit() {
         let sact = JSON.parse(sessionStorage.getItem("transactions"))
         this.transactions = sact != null ? sact : new Array<Transaction>();

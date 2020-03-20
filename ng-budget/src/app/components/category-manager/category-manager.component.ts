@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Router } from '@angular/router';
 import { Category } from 'src/app/type-classes/category/category';
 import { MatDialog } from '@angular/material/dialog';
 import { NewCategoryDialogComponent } from 'src/app/modals/new-category-dialog/new-category-dialog.component';
@@ -21,7 +20,7 @@ export class CategoryManagerComponent implements OnInit {
     newName: string;
     newExpected: number;
 
-    constructor(private router: Router, public dialog: MatDialog) { }
+    constructor(public dialog: MatDialog) { }
     ngOnInit(): void {
         let cat = JSON.parse(sessionStorage.getItem("categories"))
         this.categories = cat != null ? cat : new Array<Category>();
