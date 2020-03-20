@@ -42,7 +42,7 @@ export class Upload {
                 index = 0;
                 cell = "";
             } else if (ch === ',') {
-                if (index == 1) {
+                if (index == 0) {
                     account.name = cell;
                 } else {
                     console.log("bad index");

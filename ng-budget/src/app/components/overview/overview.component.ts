@@ -18,8 +18,8 @@ export class OverviewComponent implements OnInit {
     accountMap: Map<string, Account> = new Map<string, Account>();
     categoryMap: Map<string, Category> = new Map<string, Category>();
 
-    accountColumns: string[] = ["number", "name", "value"];
-    categoryColumns: string[] = ["code", "name", "expected", "actual"];
+    accountColumns: string[] = ["name", "value"];
+    categoryColumns: string[] = ["name", "expected", "actual"];
 
     @ViewChild(MatTable, { static: true }) accountTable: MatTable<Account>;
     @ViewChild(MatTable, { static: true }) categoryTable: MatTable<Category>;
