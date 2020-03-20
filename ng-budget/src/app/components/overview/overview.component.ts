@@ -43,5 +43,7 @@ export class OverviewComponent implements OnInit {
         }
         this.accounts = Array.from(this.accountMap.values());
         this.categories = Array.from(this.categoryMap.values());
+        sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
+        sessionStorage.setItem("categories", JSON.stringify(this.categories));
     }
 }
