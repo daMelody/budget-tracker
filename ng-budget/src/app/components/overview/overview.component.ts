@@ -39,7 +39,7 @@ export class OverviewComponent implements OnInit {
             let acc: string = this.transactions[i].account;
             this.accountMap.get(acc).value += this.transactions[i].amount;
             let cat: string = this.transactions[i].category;
-            if (cat != null) this.categoryMap.get(cat).actual += this.transactions[i].amount;
+            if (cat != "Transfer") this.categoryMap.get(cat).actual += this.transactions[i].amount;
         }
         this.accounts = Array.from(this.accountMap.values());
         this.categories = Array.from(this.categoryMap.values());
