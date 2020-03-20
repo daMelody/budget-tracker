@@ -52,10 +52,8 @@ export class TransactionTableComponent implements OnInit {
         newTransfer.to.amount = Math.abs(newTransfer.from.amount);
         newTransfer.to.category = newTransfer.from.category;
         newTransfer.to.description = newTransfer.from.description;
-        this.transactions.push(newTransfer.from);
-        this.transactions.push(newTransfer.to);
-        this.table.renderRows();
-        sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
+        this.addTransaction(newTransfer.from, "transfer");
+        this.addTransaction(newTransfer.to, "transfer");
     }
 
     newTransaction(): void {
@@ -71,19 +69,23 @@ export class TransactionTableComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(newTransaction => {
             if (newTransaction != null) {
-                this.addTransaction(newTransaction);
+                this.addTransaction(newTransaction, "transaction");
             }
         })
     }
 
-    addTransaction(newTransaction: Transaction): void {
+    addTransaction(newTransaction: Transaction, type: string): void {
         let answer: boolean = true;
         if (newTransaction.date == null ||
             newTransaction.amount == null ||
             newTransaction.account == null ||
-            newTransaction.category == null ||
-            newTransaction.description == null) {
-            answer = confirm("Are you sure you want to add this Transaction?");
+            newTransaction.description == null
+        ) {
+            if (type != "transfer" && newTransaction.category == null) {
+                answer = confirm("Are you sure you want to add this Transaction?");
+            } else {
+                answer = confirm("Are you sure you want to add this Transaction?");
+            }
         }
         if (answer) {
             this.transactions.push(newTransaction);

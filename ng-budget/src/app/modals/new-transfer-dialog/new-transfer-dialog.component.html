@@ -27,14 +27,6 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="new-transfer">
-      <mat-label>Category</mat-label>
-      <mat-select [(ngModel)]="transfer.from.category" name="category">
-        <mat-option *ngFor="let category of categories" [value]="category.name">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="new-transfer">
       <mat-label>Description</mat-label>
       <input matInput [(ngModel)]="transfer.from.description" name="description" />
     </mat-form-field>
