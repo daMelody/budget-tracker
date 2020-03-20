@@ -22,3 +22,5 @@ Notes:
             - etc.
         - <year_2>
             - fill in the rest...
+            
+- Remember, this downloads files locally, so be sure to backup the files regularly (whatever strategy works for you) so you don't potentially lose months/years of budgeting work to a technological disaster
