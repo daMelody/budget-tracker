@@ -22,7 +22,7 @@ export class NewTransactionDialogComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewTransactionDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public transaction: Transaction
+        @Inject(MAT_DIALOG_DATA) public transaction: any
     ) { }
 
     onNoClick(): void {
