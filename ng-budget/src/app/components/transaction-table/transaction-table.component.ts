@@ -97,7 +97,7 @@ export class TransactionTableComponent implements OnInit {
     }
 
     deleteTransaction(): void {
-        if (confirm("Are you sure you want to delete this Category?")) {
+        if (confirm("Are you sure you want to delete this Transaction?")) {
             this.transactions = this.transactions.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
             this.table.renderRows();
