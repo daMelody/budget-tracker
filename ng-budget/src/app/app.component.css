@@ -1,0 +1,10 @@
+app-connect-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+app-connect-bar + .routed {
+    padding-top: 50px;
+}
