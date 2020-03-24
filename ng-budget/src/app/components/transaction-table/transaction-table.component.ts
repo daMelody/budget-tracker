@@ -49,7 +49,7 @@ export class TransactionTableComponent implements OnInit {
 
     fillTransfer(newTransfer: Transfer): void {
         newTransfer.to.date = newTransfer.from.date;
-        newTransfer.to.amount = Math.abs(newTransfer.from.amount);
+        newTransfer.from.amount = 0 - newTransfer.to.amount;
         newTransfer.to.category = "Transfer";
         newTransfer.from.category = "Transfer";
         newTransfer.to.description = newTransfer.from.description;
