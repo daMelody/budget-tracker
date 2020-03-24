@@ -13,6 +13,8 @@ export class NewTransactionDialogComponent implements OnInit {
     accounts: Array<Account>;
     categories: Array<Category>;
 
+    income: boolean;
+
     ngOnInit(): void {
         this.accounts = JSON.parse(sessionStorage.getItem("accounts"));
         this.categories = JSON.parse(sessionStorage.getItem("categories"));

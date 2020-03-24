@@ -63,6 +63,7 @@ export class TransactionTableComponent implements OnInit {
             data: {
                 date: null,
                 amount: null,
+                income: null,
                 account: null,
                 category: null,
                 description: null
@@ -70,6 +71,9 @@ export class TransactionTableComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(newTransaction => {
             if (newTransaction != null) {
+                if (!newTransaction.income) {
+                    newTransaction.amount = 0 - newTransaction.amount;
+                }
                 this.addTransaction(newTransaction);
             }
         })
