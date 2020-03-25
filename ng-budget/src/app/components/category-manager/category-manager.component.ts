@@ -62,12 +62,15 @@ export class CategoryManagerComponent implements OnInit {
         if (answer) {
             newCategory.actual = 0;
             this.categories.push(newCategory);
+            this.calculateSpending();
             this.table.renderRows();
             sessionStorage.setItem("categories", JSON.stringify(this.categories));
         }
     }
 
     updateCategories(): void {
+        this.calculateSpending();
+        this.table.renderRows();
         sessionStorage.setItem("categories", JSON.stringify(this.categories));
     }
 
@@ -75,8 +78,21 @@ export class CategoryManagerComponent implements OnInit {
         if (confirm("Are you sure you want to delete this Category?")) {
             this.categories = this.categories.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
+            this.calculateSpending();
             this.table.renderRows();
             sessionStorage.setItem("categories", JSON.stringify(this.categories));
+        }
+    }
+
+    calculateSpending(): void {
+        if (this.categories.length > 0) {
+            let sum: number = 0;
+            for (let i: number = 0; i < this.categories.length; i++) {
+                sum += this.categories[i].expected;
+            }
+            if (sum < 0) {
+                alert("Are you expecting to lose $" + Math.abs(sum) + " this month?");
+            }
         }
     }
 
