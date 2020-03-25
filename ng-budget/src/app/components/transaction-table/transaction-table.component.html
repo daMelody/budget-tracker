@@ -34,21 +34,21 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> AMOUNT </th>
       <td mat-cell *matCellDef="let element">
         <input matInput type="number" [(ngModel)]="element.amount" (change)="updateTransactions()"
-          style="width: 60px" />
+          style="width: 10px" />
       </td>
     </ng-container>
     <!-- ACCOUNT column -->
     <ng-container matColumnDef="account">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.account" (change)="updateTransactions()" style="width: 75px" />
+        <input matInput [(ngModel)]="element.account" (change)="updateTransactions()" style="width: 125px" />
       </td>
     </ng-container>
-    <!-- TYPE column -->
+    <!-- CATEGORY column -->
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> CATEGORY </th>
       <td mat-cell *matCellDef="let element">
-        <input matInput [(ngModel)]="element.category" (change)="updateTransactions()" style="width: 75px" />
+        <input matInput [(ngModel)]="element.category" (change)="updateTransactions()" style="width: 125px" />
       </td>
     </ng-container>
     <!-- DESCRIPTION column-->

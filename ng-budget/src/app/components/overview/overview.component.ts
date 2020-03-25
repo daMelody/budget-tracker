@@ -51,7 +51,18 @@ export class OverviewComponent implements OnInit {
         }
         this.accounts = Array.from(this.accountMap.values());
         this.categories = Array.from(this.categoryMap.values());
+        this.moneyRound();
         sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
         sessionStorage.setItem("categories", JSON.stringify(this.categories));
+    }
+
+    // rounds up to nearest hundredth
+    moneyRound(): void {
+        this.accounts.forEach(acc => {
+            acc.value = Math.ceil(acc.value * 100) / 100;
+        });
+        this.categories.forEach(cat => {
+            cat.actual = Math.ceil(cat.actual * 100) / 100;
+        });
     }
 }

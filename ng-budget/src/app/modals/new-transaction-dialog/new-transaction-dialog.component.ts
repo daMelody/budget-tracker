@@ -13,6 +13,8 @@ export class NewTransactionDialogComponent implements OnInit {
     accounts: Array<Account>;
     categories: Array<Category>;
 
+    income: boolean;
+
     ngOnInit(): void {
         this.accounts = JSON.parse(sessionStorage.getItem("accounts"));
         this.categories = JSON.parse(sessionStorage.getItem("categories"));
@@ -20,7 +22,7 @@ export class NewTransactionDialogComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewTransactionDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public transaction: Transaction
+        @Inject(MAT_DIALOG_DATA) public transaction: any
     ) { }
 
     onNoClick(): void {

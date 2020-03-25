@@ -6,10 +6,13 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field class="new-transaction">
-      <mat-label>Amount</mat-label>
-      <input matInput type="number" [(ngModel)]="transaction.amount" name="amount" />
-    </mat-form-field>
+    <div>
+      <mat-form-field class="new-transaction">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="transaction.amount" name="amount" />
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="transaction.income" name="income">Income</mat-checkbox>
+    </div>
     <mat-form-field class="new-transaction">
       <mat-label>Account</mat-label>
       <mat-select name="account" [(ngModel)]="transaction.account">

@@ -49,7 +49,7 @@ export class TransactionTableComponent implements OnInit {
 
     fillTransfer(newTransfer: Transfer): void {
         newTransfer.to.date = newTransfer.from.date;
-        newTransfer.to.amount = Math.abs(newTransfer.from.amount);
+        newTransfer.from.amount = 0 - newTransfer.to.amount;
         newTransfer.to.category = "Transfer";
         newTransfer.from.category = "Transfer";
         newTransfer.to.description = newTransfer.from.description;
@@ -63,6 +63,7 @@ export class TransactionTableComponent implements OnInit {
             data: {
                 date: null,
                 amount: null,
+                income: null,
                 account: null,
                 category: null,
                 description: null
@@ -70,6 +71,9 @@ export class TransactionTableComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(newTransaction => {
             if (newTransaction != null) {
+                if (!newTransaction.income) {
+                    newTransaction.amount = 0 - newTransaction.amount;
+                }
                 this.addTransaction(newTransaction);
             }
         })
@@ -97,7 +101,7 @@ export class TransactionTableComponent implements OnInit {
     }
 
     deleteTransaction(): void {
-        if (confirm("Are you sure you want to delete this Category?")) {
+        if (confirm("Are you sure you want to delete this Transaction?")) {
             this.transactions = this.transactions.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
             this.table.renderRows();
