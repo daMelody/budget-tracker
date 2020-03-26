@@ -1,0 +1,20 @@
+.footer-bar {
+    background-color: darkred;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+#name {
+    margin-left: 10px;
+}
+
+.link {
+    text-decoration: none;
+    color: grey;
+}
+
+#code {
+    margin-right: 10px;
+}

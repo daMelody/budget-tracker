@@ -8,3 +8,10 @@ app-connect-bar {
 app-connect-bar + .routed {
     padding-top: 50px;
 }
+
+app-footer-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+}
