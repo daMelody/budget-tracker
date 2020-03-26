@@ -19,6 +19,7 @@
         <td mat-cell *matCellDef="let element"> {{ element.actual }} </td>
       </ng-container>
     </table>
+    <p id="saved">You are saving ${{ savingMoney }} this month.</p>
   </div>
   <div class="accounts">
     <table mat-table id="accounts" [dataSource]="accounts" name="accountTable">
