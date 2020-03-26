@@ -26,6 +26,7 @@ import { NewAccountDialogComponent } from './modals/new-account-dialog/new-accou
 import { NewCategoryDialogComponent } from './modals/new-category-dialog/new-category-dialog.component';
 import { NewTransactionDialogComponent } from './modals/new-transaction-dialog/new-transaction-dialog.component';
 import { NewTransferDialogComponent } from './modals/new-transfer-dialog/new-transfer-dialog.component';
+import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 
 const routes: Routes = [
     { path: 'accounts', component: AccountManagerComponent },
@@ -47,7 +48,8 @@ const routes: Routes = [
         NewAccountDialogComponent,
         NewCategoryDialogComponent,
         NewTransactionDialogComponent,
-        NewTransferDialogComponent
+        NewTransferDialogComponent,
+        FooterBarComponent
     ],
     imports: [
         BrowserModule,
