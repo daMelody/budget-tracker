@@ -25,6 +25,7 @@ export class OverviewComponent implements OnInit {
     @ViewChild(MatTable, { static: true }) categoryTable: MatTable<Category>;
 
     savingMoney: number = 0;
+    plannedSavings: number = 0;
 
     constructor() { }
     ngOnInit(): void {
@@ -60,16 +61,19 @@ export class OverviewComponent implements OnInit {
 
     // rounds up to nearest hundredth
     moneyRound(): void {
-        let sum: number = 0;
+        let expected: number = 0;
+        let actual: number = 0;
         this.accounts.forEach(acc => {
             acc.value = Math.ceil(acc.value * 100) / 100;
         });
         this.categories.forEach(cat => {
             cat.actual = Math.ceil(cat.actual * 100) / 100;
             if (cat.name != "Rollover") {
-                sum += cat.actual;
+                expected += cat.expected;
+                actual += cat.actual;
             }
         });
-        this.savingMoney = Math.ceil(sum * 100) / 100;
+        this.plannedSavings = Math.ceil(expected * 100) / 100;
+        this.savingMoney = Math.ceil(actual * 100) / 100;
     }
 }
