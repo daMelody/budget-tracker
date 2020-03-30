@@ -64,16 +64,16 @@ export class OverviewComponent implements OnInit {
         let expected: number = 0;
         let actual: number = 0;
         this.accounts.forEach(acc => {
-            acc.value = Math.ceil(acc.value * 100) / 100;
+            acc.value = Math.round(acc.value * 100) / 100;
         });
         this.categories.forEach(cat => {
-            cat.actual = Math.ceil(cat.actual * 100) / 100;
+            cat.actual = Math.round(cat.actual * 100) / 100;
             if (cat.name != "Rollover") {
                 expected += cat.expected;
                 actual += cat.actual;
             }
         });
-        this.plannedSavings = Math.ceil(expected * 100) / 100;
-        this.savingMoney = Math.ceil(actual * 100) / 100;
+        this.plannedSavings = Math.round(expected * 100) / 100;
+        this.savingMoney = Math.round(actual * 100) / 100;
     }
 }
