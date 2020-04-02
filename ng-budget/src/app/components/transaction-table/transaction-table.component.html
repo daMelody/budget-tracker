@@ -1,10 +1,13 @@
 <div class="transaction-table">
   <div>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="filter" (keyup)="applyFilter()">
+    </mat-form-field>
     <button mat-raised-button (click)="newTransaction()" class="actions">Add Transaction</button>
     <button mat-raised-button (click)="newTransfer()" class="actions">Add Transfer</button>
     <button mat-raised-button color="warn" (click)="deleteTransaction()" class="actions">Delete Transaction</button>
   </div>
-
   <table mat-table [dataSource]="transactions" class="mat-elevation-z8" matSort
     (matSortChange)="sortTransaction($event)">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

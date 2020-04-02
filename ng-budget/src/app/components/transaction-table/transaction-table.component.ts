@@ -16,6 +16,7 @@ export class TransactionTableComponent implements OnInit {
     displayedColumns: string[] = ["select", "date", "amount", "account", "category", "description"];
     transactions: Array<Transaction> = new Array<Transaction>();
     selection: SelectionModel<Transaction> = new SelectionModel<Transaction>(true, []);
+    filter: string;
     @ViewChild(MatTable, { static: true }) table: MatTable<Transaction>;
 
     constructor(public dialog: MatDialog) { }
@@ -159,5 +160,18 @@ export class TransactionTableComponent implements OnInit {
         } else {
             return 0;
         }
+    }
+
+    applyFilter() {
+        let srch: string = this.filter;
+        this.transactions = JSON.parse(sessionStorage.getItem("transactions"));
+        let result: Array<Transaction> = this.transactions.filter(tr => {
+            if (tr.account.match(srch) ||
+                tr.category.match(srch) ||
+                tr.description.match(srch)) {
+                return true;
+            } else { false; }
+        });
+        this.transactions = result;
     }
 }
