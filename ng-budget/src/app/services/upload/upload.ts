@@ -24,7 +24,7 @@ export class Upload {
                 objects = this.parseCLStoTransaction(stuff);
                 token = "transactions";
                 break;
-            default: console.log("incorrect file naming");
+            default: console.log("cls parsing is broken");
         }
         sessionStorage.setItem(token, JSON.stringify(objects));
     }
