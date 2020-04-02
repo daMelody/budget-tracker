@@ -13,7 +13,7 @@ export class LoadingDockComponent implements OnInit {
 
     fileHandler(e): void {
         let file: File = e.target.files[0];
-        this.files.open(file);
+        this.files.open(file, e.target.name);
     }
 
 }
