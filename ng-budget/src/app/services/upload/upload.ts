@@ -12,19 +12,19 @@ export class Upload {
         let objects: Array<any>;
         let token: string;
         switch (type) {
-            case "Account.cls":
+            case "account":
                 objects = this.parseCLStoAccount(stuff);
                 token = "accounts";
                 break;
-            case "Category.cls":
+            case "category":
                 objects = this.parseCLStoCategory(stuff);
                 token = "categories";
                 break;
-            case "Transaction.cls":
+            case "transaction":
                 objects = this.parseCLStoTransaction(stuff);
                 token = "transactions";
                 break;
-            default: console.log("incorrect file naming");
+            default: console.log("cls parsing is broken");
         }
         sessionStorage.setItem(token, JSON.stringify(objects));
     }

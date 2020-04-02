@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Account } from '../../type-classes/account/account';
-import { Category } from '../../type-classes/category/category';
-import { Transaction } from '../../type-classes/transaction/transaction';
 import { Upload } from '../upload/upload';
 import { Download } from '../download/download';
 
@@ -13,12 +10,11 @@ export class FileService {
     constructor(private upload: Upload, private download: Download) { }
     reader: FileReader = new FileReader();
 
-    open(file: File) {
+    open(file: File, name: string) {
         let text: string | ArrayBuffer;
         this.reader.onload = (e) => {
             text = this.reader.result;
-            let title: string = file.name;
-            this.upload.clsParse(text.toString(), title);
+            this.upload.clsParse(text.toString(), name);
         }
         this.reader.readAsText(file);
     }
