@@ -162,6 +162,7 @@ export class TransactionTableComponent implements OnInit {
         }
     }
 
+    /*
     applyFilter() {
         let srch: string = this.filter;
         this.transactions = JSON.parse(sessionStorage.getItem("transactions"));
@@ -173,5 +174,5 @@ export class TransactionTableComponent implements OnInit {
             } else { false; }
         });
         this.transactions = result;
-    }
+    }*/
 }
