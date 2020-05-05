@@ -38,6 +38,10 @@ export class TransactionTableComponent implements OnInit {
     }
 
     newTransfer(): void {
+        if (this.filter != "") {
+            alert("Search filter must be empty to add transfers");
+            return;
+        }
         const dialogRef = this.dialog.open(NewTransferDialogComponent, {
             width: '40%',
         });
@@ -45,7 +49,7 @@ export class TransactionTableComponent implements OnInit {
             if (newTransfer != null) {
                 this.fillTransfer(newTransfer);
             }
-        })
+        });
     }
 
     fillTransfer(newTransfer: Transfer): void {
@@ -59,6 +63,10 @@ export class TransactionTableComponent implements OnInit {
     }
 
     newTransaction(): void {
+        if (this.filter != "") {
+            alert("Search filter must be empty to add transactions");
+            return;
+        }
         const dialogRef = this.dialog.open(NewTransactionDialogComponent, {
             width: '40%',
             data: {
@@ -77,7 +85,7 @@ export class TransactionTableComponent implements OnInit {
                 }
                 this.addTransaction(newTransaction);
             }
-        })
+        });
     }
 
     addTransaction(newTransaction: Transaction): void {
@@ -98,10 +106,18 @@ export class TransactionTableComponent implements OnInit {
     }
 
     updateTransactions(): void {
+        if (this.filter != "") {
+            alert("Search filter must be empty to update transactions");
+            return;
+        }
         sessionStorage.setItem("transactions", JSON.stringify(this.transactions));
     }
 
     deleteTransaction(): void {
+        if (this.filter != "") {
+            alert("Search filter must be empty to delete transactions");
+            return;
+        }
         if (confirm("Are you sure you want to delete this Transaction?")) {
             this.transactions = this.transactions.filter(elt => !this.selection.selected.includes(elt));
             this.selection.clear();
@@ -162,7 +178,7 @@ export class TransactionTableComponent implements OnInit {
         }
     }
 
-    /*
+
     applyFilter() {
         let srch: string = this.filter;
         this.transactions = JSON.parse(sessionStorage.getItem("transactions"));
@@ -174,5 +190,5 @@ export class TransactionTableComponent implements OnInit {
             } else { false; }
         });
         this.transactions = result;
-    }*/
+    }
 }
