@@ -16,7 +16,7 @@ export class TransactionTableComponent implements OnInit {
     displayedColumns: string[] = ["select", "date", "amount", "account", "category", "description"];
     transactions: Array<Transaction> = new Array<Transaction>();
     selection: SelectionModel<Transaction> = new SelectionModel<Transaction>(true, []);
-    filter: string;
+    filter: string = "";
     @ViewChild(MatTable, { static: true }) table: MatTable<Transaction>;
 
     constructor(public dialog: MatDialog) { }
@@ -38,7 +38,7 @@ export class TransactionTableComponent implements OnInit {
     }
 
     newTransfer(): void {
-        if (this.filter != "") {
+        if (this.filter !== "") {
             alert("Search filter must be empty to add transfers");
             return;
         }
@@ -63,7 +63,7 @@ export class TransactionTableComponent implements OnInit {
     }
 
     newTransaction(): void {
-        if (this.filter != "") {
+        if (this.filter !== "") {
             alert("Search filter must be empty to add transactions");
             return;
         }
@@ -79,7 +79,7 @@ export class TransactionTableComponent implements OnInit {
             }
         });
         dialogRef.afterClosed().subscribe(newTransaction => {
-            if (newTransaction != null) {
+            if (newTransaction !== null) {
                 if (!newTransaction.income) {
                     newTransaction.amount = 0 - newTransaction.amount;
                 }
@@ -106,7 +106,7 @@ export class TransactionTableComponent implements OnInit {
     }
 
     updateTransactions(): void {
-        if (this.filter != "") {
+        if (this.filter !== "") {
             alert("Search filter must be empty to update transactions");
             return;
         }
@@ -114,7 +114,7 @@ export class TransactionTableComponent implements OnInit {
     }
 
     deleteTransaction(): void {
-        if (this.filter != "") {
+        if (this.filter !== "") {
             alert("Search filter must be empty to delete transactions");
             return;
         }
